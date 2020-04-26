@@ -18,4 +18,37 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>Neural Approaches to Conversational AI</title>
+    <url>/2020/04/25/Neural-Approaches-to-Conversational-AI/</url>
+    <content><![CDATA[<h3 id="What’s-new"><a href="#What’s-new" class="headerlink" title="What’s new?"></a>What’s new?</h3><ol>
+<li><strong>We group conversational systems into three categories: (1) question answering agents, (2) task-oriented dialogue agents, and (3)chatbots, with a unified view of optimal decision making</strong></li>
+<li><strong>Draw connections between neural approaches to traditional ones</strong></li>
+<li><strong>Present approaches to training dialogue agents using both supervised and reinforcement(++) learning.</strong></li>
+<li><strong>Progress and challenges both in rearch community and industry.</strong><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1></li>
+</ol>
+<ul>
+<li><p>Why we get promising results?</p>
+<ol>
+<li>large amounts of data available for training.</li>
+<li>breakthroughs in deep learning and reinforcement learning.</li>
+</ol>
+</li>
+<li><p>A typical task-oriented dialogue agent is composed of four modules:</p>
+<ol>
+<li>NLU(Understanding): identify user intents, extract associate info.</li>
+<li>State Tracker: capture all essential info, track the dialogue state.</li>
+<li>Dialogue Policy: select the next action based on the current state.</li>
+<li>NLG(Generation): convert agent actions to natural language responses.</li>
+</ol>
+<ul>
+<li>But recent trend: Develope fully data-driven systems by unifying these modules using a deep neural network that maps the user input to the agent output DIRECTLY.</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
 </search>
