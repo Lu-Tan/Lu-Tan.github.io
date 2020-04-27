@@ -137,7 +137,7 @@
             </div>
             <h2 class="post-title">Neural Approaches to Conversational AI</h2>
             <div class="post-meta">
-                emm... 1086 words in the article |
+                emm... 5848 words in the article |
                 you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
             </div>
         </div>
@@ -146,16 +146,16 @@
 <li><strong>We group conversational systems into three categories: (1) question answering agents, (2) task-oriented dialogue agents, and (3)chatbots, with a unified view of optimal decision making</strong></li>
 <li><strong>Draw connections between neural approaches to traditional ones</strong></li>
 <li><strong>Present approaches to training dialogue agents using both supervised and reinforcement(++) learning.</strong></li>
-<li><strong>Progress and challenges both in rearch community and industry.</strong><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1></li>
+<li><strong>Progress and challenges both in rearch community and industry.</strong></li>
 </ol>
-<ul>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
 <li><p>Why we get promising results?</p>
 <ol>
 <li>large amounts of data available for training.</li>
 <li>breakthroughs in deep learning and reinforcement learning.</li>
 </ol>
 </li>
-<li><p>A typical task-oriented dialogue agent is composed of four modules:</p>
+<li><p>A typical task-oriented dialogue agent is composed of four modules:<br>  <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1587927050/1111_zxlmue.png" alt=""></p>
 <ol>
 <li>NLU(Understanding): identify user intents, extract associate info.</li>
 <li>State Tracker: capture all essential info, track the dialogue state.</li>
@@ -164,6 +164,104 @@
 </ol>
 <ul>
 <li>But recent trend: Develope fully data-driven systems by unifying these modules using a deep neural network that maps the user input to the agent output DIRECTLY.</li>
+</ul>
+</li>
+<li><p>Difference in modular or not:</p>
+<ul>
+<li>Task-oriented bots:<ul>
+<li>access to an external database</li>
+<li>using a modular system</li>
+</ul>
+</li>
+<li>Social chatbots:<ul>
+<li>To be AI companions to humans with an emotional connection</li>
+<li>mimic human conversation by training DNN-based response generation models on large amounts of human-human conversational data.</li>
+<li>non-modular system</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Dialogue can be formulated as a decision making process.</p>
+<ul>
+<li>hierarchy<ul>
+<li>top level: selects what agent be active</li>
+<li>low level: chooses primitive actions to complete the subtask</li>
+</ul>
+</li>
+<li>Hierachical decision making processes can be cast in options over Markov Decision Processes(Sutton et al)<ul>
+<li>This view has already been applied to some large-scale open-domain dialogue systems.</li>
+</ul>
+</li>
+<li>If we view each option as an action, both top and low level processes can be natually captured by the reinforcement learning framework.<ul>
+<li>Reinforcement learning is an area of machine learning concerned with how software agents ought to take actions in an environment in order to maximize the notion of cumulative reward. Reinforcement learning is one of three basic machine learning paradigms, alongside supervised learning and unsupervised learning.</li>
+<li>The goal of dialogue learning is to find optimal policies to maximize expected rewards.</li>
+<li>rewards functions:<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1587945852/222_ctrk2x.png" alt=""></li>
+<li><strong>controdictary rewards CPS for xiaoice?</strong><ul>
+<li>Although incorporating many task-oriented and QA skills can reduce CPS in the short term since these skills help users accomplish tasks more efficiently by minimizing CPS, these new skills establish XiaoIce as an efficient and trustworthy personal assistant, thus strengthening the emotional bond with human users in the long run.</li>
+</ul>
+</li>
+<li>limit of RL view:<ul>
+<li>applying RL requires training the agents by interacting with real users, which can be expensive in many domains.</li>
+<li>solution<ul>
+<li>hybrid approach: combines the strengths of different ML methods.</li>
+<li>For example, we might use imitation and/or supervised learning methods (if there is a large amount of human-human conversational corpus) to obtain a reasonably good agent before applying RL to continue improving it.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Symbolic V.S Neural approaches<br>  <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1587950076/333_jcwtrl.png" alt=""></p>
+<ul>
+<li><p><strong>neural approaches</strong>:</p>
+<ul>
+<li><strong>can be trained in an end-to-end fasion</strong></li>
+<li><strong>robust to paraphrase alternations(detecting and generating paraphrases)</strong></li>
+<li><strong>weak in terms of execution efficiency and explicit interpretability</strong></li>
+</ul>
+</li>
+<li><p><strong>symbolic approaches</strong></p>
+<ul>
+<li><strong>sensitive to paraphrase alternations</strong></li>
+<li><strong>more interpretable and efficient in execution.</strong></li>
+<li><strong>difficult to train</strong></li>
+</ul>
+</li>
+<li><p>Symbolic approaches</p>
+<ul>
+<li>dominated for decades</li>
+<li>resolve natural language ambiguity at different levels by mapping (or generating) a natural language sentence to (or from) a series of human-defined, unambiguous, symbolic representations, such as Part-Of-Speech (POS) tags, context free grammar, first-order predicate calculus.</li>
+<li>now: have been adapted as a rich source of engineered features to be fed into a variety of machine learning models</li>
+</ul>
+</li>
+<li><p>neural approaches</p>
+<ul>
+<li>do not rely on any human-defined symbolic representations</li>
+<li>learn in a task- specific neural space where task-specific knowledge is implicitly represented as semantic concepts using low-dimensional continuous vectors.</li>
+<li>steps:<ol>
+<li>encoding symbolic user input and knowledge into their neural sematic representations( represent as vectors)</li>
+<li>reasoning: to generate a system response based on input and system state.</li>
+<li>decoding</li>
+</ol>
+<ul>
+<li>the above three steps are stacked into a deep neural network trained in an end-to-end fastionl via back propagation.<ul>
+<li>back propagation:<ul>
+<li>a widely used algorithm in training feedforward neural networks for supervised learning. </li>
+<li>In fitting a neural network, backpropagation computes the gradient of the loss function with respect to the weights of the network for a single input–output example, and does so efficiently, unlike a naive direct computation of the gradient with respect to each weight individually.</li>
+<li>The backpropagation algorithm works by computing the gradient of the loss function with respect to each weight by the chain rule, computing the gradient one layer at a time, iterating backward from the last layer to avoid redundant calculations of intermediate terms in the chain rule; this is an example of dynamic programming.</li>
+</ul>
+</li>
+<li>end-to-end causes: the focus has shifted to carefully tailoring the increasingly complex architecture of neural networks to the end application.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>review: Although neural approaches have already been widely adopted in many AI tasks, including image processing, speech recognition and machine translation (e.g., Goodfellow et al., 2016), their impact on conversational AI has come somewhat more slowly.</li>
+<li>addition merits: neural approaches provide a consistent representation for many modalities, capturing linguistic and non-linguistic (e.g., image and video (Mostafazadeh et al., 2017)) features in the same modeling framework.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
