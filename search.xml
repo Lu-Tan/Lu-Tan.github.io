@@ -149,4 +149,51 @@
         <tag>NLP</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Machine Learning Basics for Conversational AI</title>
+    <url>/2020/04/26/Machine-Learning-Basics/</url>
+    <content><![CDATA[<h1 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h1><ul>
+<li><strong>Mitchell</strong> defines: any computer program that improves its performance at some task T, measured by P, through experiences E.<ul>
+<li>T:(in conversational AI: perform conversations with a user to fulfill the user’s goal.</li>
+<li>P: cumulative reward<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1587945852/222_ctrk2x.png" alt=""></li>
+<li>E: a set of dialogues</li>
+</ul>
+</li>
+<li>A common recipe of building an ML agent using supervised learning (SL) consists of <ul>
+<li>a dataset <ul>
+<li>The dataset consists of (x, y∗) pairs, where for each input x, there is a ground-truth output y∗. In QA, x consists of an input question and the documents from which an answer is generated, and y∗ is the desired answer provided by a knowledgeable external supervisor</li>
+</ul>
+</li>
+<li>a model</li>
+<li>a cost function (a.k.a. loss function)<ul>
+<li>The cost function is of the form L(y∗, f(x; θ))</li>
+<li>L(.) is often designed as a smooth function(differentiable everywhere) of error.</li>
+<li>A commonly used cost function that meets these criteria is the mean squared error (MSE)<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588012080/de_bccc3c.png" alt=""></li>
+</ul>
+</li>
+<li>an optimization procedure<ul>
+<li>The optimization can be viewed as a search algorithm to identify the best θ that <strong>minimize L(.)</strong>. </li>
+<li>Given that L is differentiable, the most widely used optimization procedure for deep learning is mini-batch Stochastic Gradient Descent (SGD) which updates θ after each batch as <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588012262/SGD_yin3qj.png" alt=""> where N is the batch size and α the learning rate.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Common supervised learning <strong>metrics</strong><ul>
+<li>regression problems: mean squared error<ul>
+<li><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588046494/MSE_uncxsu.png" alt=""></li>
+</ul>
+</li>
+<li>classification problems<ul>
+<li>binary classification: accuracy, precision, recall, F1 Score<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588048090/binary-classification-metrics_kefszn.png" alt=""></li>
+<li>beyond binary: BLEU score</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
 </search>

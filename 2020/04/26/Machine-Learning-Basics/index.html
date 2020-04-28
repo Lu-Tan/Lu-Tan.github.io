@@ -28,7 +28,7 @@
 <link rel="shortcut icon" href="/images/favicon1.png">
 
 
-<title>archives- 2020 - LuLu&#39;s Blog</title>
+<title>machine learning basics for conversational ai - LuLu&#39;s Blog</title>
 
 <meta name="keywords" content="">
 
@@ -104,8 +104,10 @@
 
             <div class="page-title">
     <ul>
-        <li><a href="/" data-name="Home" title="Back Home">Home</a></li>
-        <li><a href="/tags" data-name="Tag Cloud" title="Tag Cloud">Tags</a></li>
+        <li><a href="/">Recent Posts</a></li>
+        
+        
+        
         <li class="page-search">
     <form id="search" class="search-form">
         <input type="text"
@@ -121,55 +123,99 @@
 <div class="main-inner">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
-            <h3 class="post-title">Nice 🥳 3 posts in total. Keep on posting.</h3>
-        </div>
-        
-
-        <div class="post-content markdown-body" itemprop="articleBody">
-            <div class="archives">
-                
-                
-                
-                
-                
-                <div class="archives-item">
-                    <h2>2020年04月</h2>
-                    <ul class="archives_list">
-                        
-                        <li>26日22:19:34
-                            <a href="/2020/04/26/Machine-Learning-Basics/">Machine Learning Basics for Conversational AI</a>
-                            
-                        </li>
-                        
-                
-                
-                
-                        <li>25日20:58:09
-                            <a href="/2020/04/25/Neural-Approaches-to-Conversational-AI/">Neural Approaches to Conversational AI</a>
-                            
-                        </li>
-                        
-                
-                
-                
-                        <li>24日15:41:02
-                            <a href="/2020/04/24/hello-world/">Hello World</a>
-                            
-                        </li>
-                        
-                    </ul>
-                </div>
-                
-                
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://www.lutann.com"
+                   target="_blank">
+                    <img width="48" src="/images/favicon1.png" alt="avatar"/>
+                </a>
+                <p><span class="label">Author</span>
+                    <a href="https://www.lutann.com"
+                       target="_blank">Lu Tan</a>
+                    <span title="Last edited at&nbsp;2020-04-26">2020-04-26</span>
+                </p>
+                <p>一只小可爱</p>
+            </div>
+            <h2 class="post-title">Machine Learning Basics for Conversational AI</h2>
+            <div class="post-meta">
+                emm... 1447 words in the article |
+                you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
             </div>
         </div>
+        <div class="post-content markdown-body">
+            <h1 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h1><ul>
+<li><strong>Mitchell</strong> defines: any computer program that improves its performance at some task T, measured by P, through experiences E.<ul>
+<li>T:(in conversational AI: perform conversations with a user to fulfill the user’s goal.</li>
+<li>P: cumulative reward<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1587945852/222_ctrk2x.png" alt=""></li>
+<li>E: a set of dialogues</li>
+</ul>
+</li>
+<li>A common recipe of building an ML agent using supervised learning (SL) consists of <ul>
+<li>a dataset <ul>
+<li>The dataset consists of (x, y∗) pairs, where for each input x, there is a ground-truth output y∗. In QA, x consists of an input question and the documents from which an answer is generated, and y∗ is the desired answer provided by a knowledgeable external supervisor</li>
+</ul>
+</li>
+<li>a model</li>
+<li>a cost function (a.k.a. loss function)<ul>
+<li>The cost function is of the form L(y∗, f(x; θ))</li>
+<li>L(.) is often designed as a smooth function(differentiable everywhere) of error.</li>
+<li>A commonly used cost function that meets these criteria is the mean squared error (MSE)<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588012080/de_bccc3c.png" alt=""></li>
+</ul>
+</li>
+<li>an optimization procedure<ul>
+<li>The optimization can be viewed as a search algorithm to identify the best θ that <strong>minimize L(.)</strong>. </li>
+<li>Given that L is differentiable, the most widely used optimization procedure for deep learning is mini-batch Stochastic Gradient Descent (SGD) which updates θ after each batch as <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588012262/SGD_yin3qj.png" alt=""> where N is the batch size and α the learning rate.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Common supervised learning <strong>metrics</strong><ul>
+<li>regression problems: mean squared error<ul>
+<li><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588046494/MSE_uncxsu.png" alt=""></li>
+</ul>
+</li>
+<li>classification problems<ul>
+<li>binary classification: accuracy, precision, recall, F1 Score<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588048090/binary-classification-metrics_kefszn.png" alt=""></li>
+<li>beyond binary: BLEU score</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+                
+
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Donate
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/NLP/">NLP</a>
+            
+        </div>
+        
     </article>
+    
+        <p style="text-align: center">This article just represents my own viewpoint. If there is something wrong, please correct me.</p>
+    
+    
+    
+
 </div>
+
+<script src="/js/busuanzi.pure.mini.js"></script>
+
+
 
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner" style="text-align: left">
+    <div class="footer-inner" style="text-align: center">
         <p>
             <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->
