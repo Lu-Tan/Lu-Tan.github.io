@@ -137,7 +137,7 @@
             </div>
             <h2 class="post-title">Machine Learning Basics for Conversational AI</h2>
             <div class="post-meta">
-                emm... 1447 words in the article |
+                emm... 5471 words in the article |
                 you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
             </div>
         </div>
@@ -149,6 +149,8 @@
 <li>E: a set of dialogues</li>
 </ul>
 </li>
+</ul>
+<h2 id="Surpervised-Learning"><a href="#Surpervised-Learning" class="headerlink" title="Surpervised Learning"></a>Surpervised Learning</h2><ul>
 <li>A common recipe of building an ML agent using supervised learning (SL) consists of <ul>
 <li>a dataset <ul>
 <li>The dataset consists of (x, y∗) pairs, where for each input x, there is a ground-truth output y∗. In QA, x consists of an input question and the documents from which an answer is generated, and y∗ is the desired answer provided by a knowledgeable external supervisor</li>
@@ -180,6 +182,106 @@
 </li>
 </ul>
 </li>
+</ul>
+<h2 id="Reinforcement-Learning"><a href="#Reinforcement-Learning" class="headerlink" title="Reinforcement Learning"></a>Reinforcement Learning</h2><ul>
+<li>Define: In unexplored territories, the agent has to learn how to act by interacting with an unknown environment on its own. </li>
+<li>RL V.S SL:<ul>
+<li>While SL learns from previous experiences provided by a knowledgeable external supervisor, RL learns by experiencing on its own.</li>
+</ul>
+</li>
+<li>Feature of RL:<ol>
+<li>Exploration-exploitation tradeoff. (???)<ul>
+<li>exploit: The agent has to exploit what it already knows in order to obtain high rewards.</li>
+<li>explore: The agent has to explore unknown states and actions in order to make better action selections in the future.</li>
+</ul>
+</li>
+<li>Delayed reward and temporal credit assignment. <ul>
+<li>The agent has to determine which of the actions in its sequence are to be credited with producing the eventual reward.</li>
+</ul>
+</li>
+<li>Partially observed states. <ul>
+<li>In many RL problems, the observation perceived from the environment at each step, e.g., user input in each dialogue turn, provides only partial information about the entire state of the environment based on which the agent selects the next action. </li>
+<li>Neural approaches learn a deep neural network to represent the state by <strong>encoding all information</strong> observed at the current and past steps.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>A central challenge in both RL and SL: <strong>generalization</strong><ul>
+<li>the ability to perform well on unseen inputs.</li>
+<li>solution: neural approaches provide a potentially more effective solution by <strong>leveraging the representation</strong>(?) learning power of deep neural networks.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Deep-Learning"><a href="#Deep-Learning" class="headerlink" title="Deep Learning"></a>Deep Learning</h1><ul>
+<li><p><strong>Deep learning V.S neural network?</strong></p>
+<ul>
+<li>DL involves training neural networks.</li>
+<li><strong>Why Deep?</strong><ul>
+<li>The neural networks, in their original form, consisted of a single layer(i.e., the perceptron).</li>
+<li>The perceptron is incapable of learning even simple functions such as logical XOR.</li>
+<li>To solve the problem, we add hidden layers(<strong>Why hiden?</strong>) between input and output. –this is called MLP(multi-layer perceptron) or DNN(deep neural networks).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>commonly used DNNs for NLP &amp; IR</strong></p>
+<h2 id="Softmax-function"><a href="#Softmax-function" class="headerlink" title="Softmax function"></a><strong>Softmax function</strong></h2></li>
+<li><p>An activation function.</p>
+</li>
+<li><p>It outputs a vector that represents the probability distributions of a list of potential outcomes.</p>
+<h3 id="normalization-step-taking-exponentials-sums-and-division"><a href="#normalization-step-taking-exponentials-sums-and-division" class="headerlink" title="normalization step: taking exponentials, sums and division."></a>normalization step: taking exponentials, sums and division.</h3></li>
+<li><p>ex. Softmax function turns logits [2.0, 1.0, 0.1] into probabilities [0.7, 0.2, 0.1], and the probabilities sum to 1.</p>
+</li>
+<li><p><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588104301/softmax_wy6yoa.png" alt=""></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">logits &#x3D; [2.0, 1.0, 0.1]</span><br><span class="line">exps &#x3D; [np.exp(i) for i in logits]</span><br><span class="line">sum_of_exps &#x3D; sum(exps)</span><br><span class="line">softmax &#x3D; [j&#x2F;sum_of_exps for j in exps]</span><br><span class="line">print(&quot;softmax:&#123;&#125;&quot;.format(softmax))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><em>Why we need exponents?</em><ul>
+<li>Logits ranges from negative infinity to positive infinity. When logits are negative, adding it together does not give us the correct normalization. Exponentiate logitsturn them them zero or positive!</li>
+</ul>
+</li>
+<li><em>Why special number e?</em><ul>
+<li>e exponents also makes the math easier later! log(a*b)= log(a)+log(b)</li>
+</ul>
+</li>
+<li><em>logits layer means the last neuron layer of neural network for classification task which produces raw prediction values.</em></li>
+<li><em>Logits: numeric output of the last linear layer of a multi-class classification neural network. Before activation takes place.</em></li>
+<li>Softmax function is <em>frequently appended to</em> the last layer of an image classification network such as cnn.<ul>
+<li><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588105160/soft2_a3nsm6.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<h2 id="classical-ML-V-S-DL"><a href="#classical-ML-V-S-DL" class="headerlink" title="classical-ML V.S DL"></a>classical-ML V.S DL</h2><ul>
+<li><p><em>Ex: text classification</em></p>
+</li>
+<li><p>classical ML:</p>
+<ol>
+<li>Map a text string to a vector representation <strong>x</strong>, using a set of <strong>hand-engineered</strong> features.</li>
+<li>Learn a linear classifier with a softmax layer to compute the distribution.<ul>
+<li><strong>Design effort: feature engineering</strong></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>DL: Jointly optimize the <em>feature representation</em> and <em>classification</em> using a DNN.</p>
+<ul>
+<li><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588128439/ml-vs-dl_nel4rq.png" alt=""></li>
+<li>DNN consists of two halves:<ol>
+<li>top half: linear classifier, similar to classical ML.</li>
+<li>The input vector of top half is <strong>not from hand-engineered features</strong>, but learned using the bottom half of the DNN.</li>
+</ol>
+<ul>
+<li>**Design Effort: optimize DNN architectures for effective representation learning.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Which-NN-neural-network-to-choose"><a href="#Which-NN-neural-network-to-choose" class="headerlink" title="Which NN(neural network) to choose?"></a>Which NN(neural network) to choose?</h2><ul>
+<li>**Depend on the type of linguistic structures that we hope to capture in the text.<h3 id="Word-Embedding-layers"><a href="#Word-Embedding-layers" class="headerlink" title="Word Embedding layers"></a>Word Embedding layers</h3><h4 id="Word-Embedding"><a href="#Word-Embedding" class="headerlink" title="Word Embedding"></a>Word Embedding</h4></li>
+<li>Word embeddings are a type of word representation that allows words with similar meaning to have a similar representation.</li>
 </ul>
 
             
