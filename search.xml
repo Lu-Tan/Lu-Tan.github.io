@@ -312,189 +312,6 @@ much larger corpora of text </code></pre><p><strong>Ex: King - man + woman = Que
       </tags>
   </entry>
   <entry>
-    <title>interview0503</title>
-    <url>/2020/05/03/interview0503/</url>
-    <content><![CDATA[<h1 id="Possible-Questions"><a href="#Possible-Questions" class="headerlink" title="Possible Questions"></a>Possible Questions</h1><h2 id="1-Duration-of-your-summer-internship"><a href="#1-Duration-of-your-summer-internship" class="headerlink" title="1. Duration of your summer internship."></a>1. Duration of your summer internship.</h2><p>‘’’<br>AAAI 截稿时间：9.5<br>ICAART(International Conference on Agents and Artificial Intelligence):10.4<br>ICLR( International Conference on Learning Representations):9.25<br>‘’’</p>
-<p>I have plenty of time.<br>I am available from the first of June to the thirtieth of Sep, Since I am preparing for Toefl and GRE in May.<br>I have finished all required courses in Wuhan University, Thus I can continue to work after the thirtieth of Sep, maybe for half of a year.</p>
-<p>签证问题：<br>Currently I am still in USA and my visa expires in October. I prefer to work in your lab rather than remote. I will appreciate it if we can make it.</p>
-<h2 id="2-Any-potential-research-directions-you-might-be-interested-in"><a href="#2-Any-potential-research-directions-you-might-be-interested-in" class="headerlink" title="2. Any potential research directions you might be interested in?"></a>2. Any potential research directions you might be interested in?</h2><ul>
-<li>I am interested in conversitional AI.</li>
-<li>3 kinds of problems a dialogue system is expected to solve:<ol>
-<li>Question answering: provide concise, direct answers to user queries.</li>
-<li>Task completion: range from reservation to meeting scheduling</li>
-<li>Social chat: Like a human as in the Turing test. Converse seamlessly and appropriately with users.</li>
-</ol>
-</li>
-</ul>
-<h2 id="3-The-NLP-and-HCI-projects-you-mentioned-are-very-different-from-each-other"><a href="#3-The-NLP-and-HCI-projects-you-mentioned-are-very-different-from-each-other" class="headerlink" title="3.The NLP and HCI projects you mentioned are very different from each other."></a>3.The NLP and HCI projects you mentioned are <em>very different</em> from each other.</h2><ul>
-<li>Yep, actually there’s no connection between them. Both natural language processing and embedded equipment are of my passion. I plan to be a Phd student and it’s hard to make choice. So I’d like to try both of them to see which one suits me best.</li>
-</ul>
-<h3 id="NLP-projects"><a href="#NLP-projects" class="headerlink" title="NLP projects"></a>NLP projects</h3><p><strong>1. Intelligent Judge</strong></p>
-<ul>
-<li><p>Time: summer of twenty nineteen.</p>
-</li>
-<li><p>Project: Our system is able to <strong>analyze legal information based on semantics</strong> and <strong>make legal predictions from the legal data set</strong>, and hence it helps the judiciary system in automation thereby increasing the efficiency within affordable budget. </p>
-</li>
-<li><p>My task:</p>
-<ul>
-<li><ol>
-<li>Chinese word segmentation</li>
-</ol>
-<ul>
-<li><p>CRF++ toolkit<br>  CRF++ is an open-source implementation of Conditional Random Fields for segmenting/labeling sequential data.</p>
-<ul>
-<li><p>Usage<br>Both the training and testing files need to be in a particular format. They must consist of multiple tokens.<br>A token consists of multiple columns. Each token must be represented in one line.<br>Sentence: A sequence of token becomes a sentence. To identify the boundary between sentences, an empty line is put.<br>The last column represents a true answer tag which is going to be trained by CRF.</p>
-</li>
-<li><p><strong>Steps</strong></p>
-</li>
-<li><p><strong>step 1</strong>:Make training file and test file in a particular format.</p>
-</li>
-<li><p><strong>step 2</strong>：Prepare feature templates. This file describes which features are used in training and testing.</p>
-<p>  Special macro%x[row,col] will be used to specify a token in the input data. row specfies the relative position from the current focusing token and col specifies the absolute position of the column.</p>
-</li>
-<li><p><strong>step 3</strong>：Training(encoding)</p>
-</li>
-<li><p><strong>step 4</strong>: Testing(decoding)</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Why CRF++?</p>
-<ul>
-<li><ol>
-<li>CRF V.S Dictionary-based word segmentation：<br>Dictionary-based word segmentation relies too much on dictionaries and rule bases, so it has low recognition ability for ambiguous words and unregistered words. But it’s efficicy.</li>
-</ol>
-<p>CRF not only considers the frequency of the words, but also the context, thus has a good learning ability. Therefore, it performs well at the recognition of ambiguous words and unregistered words; BUT the training period is longer and it needs large amount of calculation.</p>
-</li>
-<li><ol start="2">
-<li>CRF V.S HMM：<br>One of the biggest disadvantages of the hidden Markov model is that due to its output independence assumption, it cannot consider the characteristics of the context, which limits the choice of features.<br>Assumption of HMM:</li>
-</ol>
-</li>
-</ul>
-<ol>
-<li>p(si|si-1,si-2,…,s1) = p(si|si-1)</li>
-<li>P(si+1|si)=p(sj+1,sj) There’s no connection between state and time.</li>
-<li>P(o1,…ot|s1,…st) = P(ot|qt) Output is only relavant to current state.</li>
-</ol>
-</li>
-</ul>
-<ol start="2">
-<li><p>Event extraction<br> Event extraction is the process of gathering knowledge about periodical incidents found in texts, automatically identifying information about <em>what happened and when it happened</em>.</p>
-<p> In that project, I am responsible for namekd entity recognition. That’s about extracting named entities such as name, time, location, consequence and so on from legal documents.<br> LSTM-CRF is a state-of-the-art approach to named entity recognition.<br> <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588532677/namekd_cuekww.png" alt=""></p>
-</li>
-</ol>
-<ul>
-<li><p>Why we choose CRF+LSTM?</p>
-</li>
-<li><ol>
-<li>Classical Approaches V.S CRF<br>Classical approaches are mostly rule-based.</li>
-</ol>
-</li>
-<li><ol start="2">
-<li><p>ML V.S CRF<br>One way of ML: A- treat the problem as a multi-class classification where named entities are our labels so we can apply different classification algorithms.<br><strong>BUT</strong>: This method ignores (1)the thorough understanding of the context of a sentence (2)the sequence of the word labels in it.</p>
-<p>Another way: B- is CRF(Conditional Random Field) model. This model is a graphical model, can be used to model sequential data such as labels of words in a sequence.<br><strong>BUT</strong>: Though CRF model is able to capture the features of the current and previou labels in a sequence, it <em>can’t</em> understand the context of the forward labels.</p>
-</li>
-</ol>
-</li>
-<li><ol start="3">
-<li><p>DL: state-of-the-art</p>
-<ul>
-<li>Metrics: F1, not accuracy<br>Accuracy: It’s common to use it while training a neural network in different iterations. </li>
-</ul>
-<p>F1: Because false positives and false negatives have a business cost in a NER task, we use F1 to balance between precision and recall.<br>precision = tp / (tp + fp)<br>recall = tp / (tp + fn)</p>
-<ul>
-<li>standard LSTM<br>It only take the “past” information in a sequence of the text into account. </li>
-</ul>
-<p><strong>BUT</strong> in named entity recognition, we need to take both the past and the future labels in sequence.</p>
-<ul>
-<li>Recurrent neural networks(RNN)<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588543758/RNN2_on8ofu.png" alt=""><br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588543792/rnn3_fatuql.png" alt=""><br>A RNN <strong>maintains a memory based on history information</strong>, which enables the model to predict the current output conditioned on long distance features.</li>
-</ul>
-<p><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588541643/RNN_tdp8rd.png" alt=""><br>input layer: <em>x</em>: input features. One-hot-encoding. An input layer has the same dimensionality as feature size.</p>
-<p>hidden layer <em>h</em>: hidden state. The RNN introduces the connection between the previous hidden state and current hidden state. Thus the recurrent layer weight parameters. The recurrent layer is designed to store history information.<br><strong>h(t) = f( U x(t) + W h(t − 1) )</strong><br>U and W are the connection weights to be computed in training time, f(z) are sigmoid activation function. <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588542223/sigmoid_qdp7g6.png" alt=""></p>
-</li>
-</ol>
-</li>
-</ul>
-<pre><code> output layer *y*: tags. It presents a probability distribution over labels. It has the same dimensionality as size of labels.
- **y(t) = g( V h(t) )**
- V is connection weight to be computed in training time, g(z) are softmax activation function. ![](https://res.cloudinary.com/dmfrqkuif/image/upload/v1588542335/softmax3_i2eesu.png)
-
-- LSTM Networks
- Long Short Term Memory networks are the same as RNNs, except that **the hidden layer updates are replaced by purpose-built memory cells**. As a result, they may be better at finding and exploiting long range dependencies in the data.
- ![](https://res.cloudinary.com/dmfrqkuif/image/upload/v1588543847/RNN4_ae5jsj.png)
- ![](https://res.cloudinary.com/dmfrqkuif/image/upload/v1588543880/LSTM_fyarr4.png)
- Step by step of LSTM: https://colah.github.io/posts/2015-08-Understanding-LSTMs/
-
-- CRF+LSTM
-This network can efficiently use past input features via a LSTM layer and sentence level tag information via a CRF layer.</code></pre><ul>
-<li><ol start="3">
-<li>Result prediction</li>
-</ol>
-<ul>
-<li>word vector + CNN</li>
-</ul>
-</li>
-</ul>
-<p><strong>2. Conversation on movie themes</strong></p>
-<ul>
-<li><p>Time: Fall of twenty nineteen.</p>
-</li>
-<li><p>Project: Conversation robot on the topic of movies.</p>
-</li>
-<li><p>My Task: comparative experiments</p>
-<ul>
-<li><ol>
-<li>Organize the data set into the form required by the model.</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>Training, tunning and saving model.</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>Comparing performance of Bert, BiDAF, Transformer</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>Bert: Bidirectional Encoder Representations from Transformers<br>  BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers.</p>
-</li>
-<li><p>Transformer<br>Where does it play a role?<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588551207/transformer-role_vv3eex.png" alt=""><br>The highlighted words refer to the same person – Griezmann, a popular football player. </p>
-<ul>
-<li>Seq 2 seq<br> <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588551411/seq2seq_nzlfq2.png" alt=""><br> The task of an encoder network is to understand the input sequence, and create a <em>smaller</em> dimensional representation of it. This representation is then forwarded to a decoder network which generates a sequence of its own that represents the output. <pre><code>- Beam search: It greedily find out the most probable word at each time step.Beam search takes into account the probability of the next k words in the sequence, and then chooses the proposal with the max combined probability.
-- attention mechanism: Instead of encoding the input sequence into a single fixed context vector, we let the model learn how to generate a context vector for each output time step. That is we let the model learn what to attend based on the input sentence and what it has produced so far.</code></pre></li>
-</ul>
-</li>
-<li><p>BiDAF(Bi-Directional Attention Flow)<br>   A multi-stage hierarchical process that represents the context at different levels of granularity and uses bi-directional attention flow mechanism to obtain a query-aware context representation without early summarization. Our experimental evaluations show that our model achieves the state-of-the-art results in Stanford Question Answering Dataset (SQuAD) and CNN/DailyMail cloze test.</p>
-</li>
-</ul>
-<h3 id="HCI-projects"><a href="#HCI-projects" class="headerlink" title="HCI projects"></a>HCI projects</h3><ul>
-<li>Time: Winter of twenty twenty</li>
-<li>Project: A contact-based object recognition technique on interactive fabrics using capacitive sensing.</li>
-<li>My Task:<ul>
-<li><ol>
-<li>Design experiments</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>Write code</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>Write part of the paper.</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>碎碎念-前途未卜</title>
     <url>/2020/05/20/%E7%A2%8E%E7%A2%8E%E5%BF%B5-%E5%89%8D%E9%80%94%E6%9C%AA%E5%8D%9C/</url>
     <content><![CDATA[<h5 id="我们走出人生中几乎所有关键性步骤时，都是在一种难以觉察的情况下顺应内心的结果。"><a href="#我们走出人生中几乎所有关键性步骤时，都是在一种难以觉察的情况下顺应内心的结果。" class="headerlink" title="我们走出人生中几乎所有关键性步骤时，都是在一种难以觉察的情况下顺应内心的结果。"></a>我们走出人生中几乎所有关键性步骤时，都是在一种难以觉察的情况下顺应内心的结果。</h5><p>回国一周啦，在广州集中隔离。虽说是一个人待在房间里面不让出去，看起来有点惨，但我似乎并没有什么难受的感觉。酒店工作人员都很友善，爸妈给的钱也足够多，每天点的外卖都很好吃（广州居然可以通过外卖点到喜茶！！！），手上也一直都有事情做。过去的一周里，前三四天都在急着看Related Work,十篇左右的密密麻麻的英文论文看的头皮发麻嘤嘤嘤，可能是笔记本的屏幕太小了不舒服吧~因为是做信息抽取，不必自己提出算法改进模型之类的，所以还算好上手，学习难度也不是特别大。整理成文档发给老师后，被夸是Very well-organized，哈哈哈我快乐了。</p>
@@ -659,6 +476,29 @@ This network can efficiently use past input features via a LSTM layer and senten
 ]]></content>
       <tags>
         <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>保研后的生活</title>
+    <url>/2020/10/27/%E4%BF%9D%E7%A0%94%E5%90%8E%E7%9A%84%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h5 id="对生活做种种设置是人特有的品性。不光是设置动物，也设置自己。我们知道，在古希腊有个斯巴达，那里的生活被设置得了无生趣，其目的就是要使男人成为亡命战士，使女人成为生育机器，前者像斗鸡，后者像母猪。这两类动物是很特别的，但我以为，它们肯定不喜欢自己的生活。但不喜欢又能怎么样？人也好，动物也罢，都很难改变自己的命运。-————王小波-《一只特立独行的猪》"><a href="#对生活做种种设置是人特有的品性。不光是设置动物，也设置自己。我们知道，在古希腊有个斯巴达，那里的生活被设置得了无生趣，其目的就是要使男人成为亡命战士，使女人成为生育机器，前者像斗鸡，后者像母猪。这两类动物是很特别的，但我以为，它们肯定不喜欢自己的生活。但不喜欢又能怎么样？人也好，动物也罢，都很难改变自己的命运。-————王小波-《一只特立独行的猪》" class="headerlink" title="对生活做种种设置是人特有的品性。不光是设置动物，也设置自己。我们知道，在古希腊有个斯巴达，那里的生活被设置得了无生趣，其目的就是要使男人成为亡命战士，使女人成为生育机器，前者像斗鸡，后者像母猪。这两类动物是很特别的，但我以为，它们肯定不喜欢自己的生活。但不喜欢又能怎么样？人也好，动物也罢，都很难改变自己的命运。 ————王小波 《一只特立独行的猪》"></a>对生活做种种设置是人特有的品性。不光是设置动物，也设置自己。我们知道，在古希腊有个斯巴达，那里的生活被设置得了无生趣，其目的就是要使男人成为亡命战士，使女人成为生育机器，前者像斗鸡，后者像母猪。这两类动物是很特别的，但我以为，它们肯定不喜欢自己的生活。但不喜欢又能怎么样？人也好，动物也罢，都很难改变自己的命运。 ————王小波 《一只特立独行的猪》</h5><p>距离上一次更新博客已经快五个月啦。这五个月发生了许许多多的意想不到的事情，有快乐的惊喜的、也有悲伤的委屈的。今日感冒请了病假在家休息，顺便回味一下这五个月以来的喜怒哀乐，以此博文作流水账。写完回看觉得这篇博客写得实在不好，还望各路大神多多指导一下！</p>
+<h3 id="五月·隔离"><a href="#五月·隔离" class="headerlink" title="五月·隔离"></a>五月·隔离</h3><p><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1603802357/IMG_7570_20200920-223800_lklvkp.jpg" alt=""><br>五月十号之前我在Hanover小镇过着悠闲的养老生活：寒研已经结束，小伙伴们全都已经离开，剩下可怜弱小又无助等机票的本人留守hanover，等待回国那一天的到来。</p>
+<p><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1603802406/IMG_8199_20200529-225733_snjrcl.jpg" alt=""><br>在广州隔离了十四天后，回到家里又被社区要求自觉居家隔离十四天，于是整个五月和六月初几乎都在隔离中度过了。现在回想起来，在广州隔离的那段日子还是非常的舒服的：热情的工作人员跑上跑下的给大家送外卖，温柔的护士小姐姐小哥哥每天上门查两次体温，隔离结束的时候隔离酒店还给每个人送了“福”的红底毛笔字留作纪念。在此再次感谢广州番禺区的宜必思酒店！</p>
+<h3 id="六月·暑研"><a href="#六月·暑研" class="headerlink" title="六月·暑研"></a>六月·暑研</h3><p>这是一段难忘又难受的经历，大概就是跟着美国某著名高校的raising star一样的一个AP，然后八字不合闹的不欢而散的事情，在此略去一万个字。</p>
+<h3 id="七月·保研"><a href="#七月·保研" class="headerlink" title="七月·保研"></a>七月·保研</h3><p>看着国际形势越来越恶化，以及父母的担心，我选择了保研。海投了一波学校：清华北大复旦上交中科大中科院港中文。中奖了港中文、中科大、中科院和清华。当时香港还没出国安法，担心局势不稳定就没去。清华的夏令营在中科大和中科院的前面，清华面试完之后自我感觉良好，所以就没有继续参加后面的两个学校的活动了。</p>
+<p>虽然后面的录取过程非常的曲折，让我一度非常后悔当初为什么没多拿几个学校的offer。今年由于疫情的影响，教育部分发研究生名额的日期推迟了几乎一个月，因此我们学校的保研资格证明也迟迟没有发放，但是清华大学依旧催着要求我们出具保研资格证明或者强有力的辅助材料，由于本人实在是菜，以上三个机构的时间安排冲突给我造成了很大的麻烦，再次感谢帮助我的各位老师和给我舒缓压力的各位朋友。</p>
+<h3 id="八月·手术"><a href="#八月·手术" class="headerlink" title="八月·手术"></a>八月·手术</h3><p>动了个小手术，住院了几天。 有了实习的念头，在educative上刷了一些算法题。刷的是grokking the coding interview的题目，我很喜欢这个课程，深入浅出，把算法题的套路分为几大类型，每个类型都先从简单的例子开始讲思想，然后再慢慢举一反三，给人一种无痛刷题的美好体验。<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1603803523/%E6%8D%95%E8%8E%B7_nzyop8.png" alt=""></p>
+<h3 id="九月·重返校园"><a href="#九月·重返校园" class="headerlink" title="九月·重返校园"></a>九月·重返校园</h3><p>年初一月离开武汉去美国的时候，武汉海鲜市场就已经爆出新闻说有不明传染病了，因此我还在宿舍买了两大包的口罩，虽然我也懒得戴，疫情期间送给宿管阿姨了。刚到美国不久武汉就封城了，再次回到校园已经是九月，这是我没有预料到的。</p>
+<p>九月主要在折腾保研手续的事情，这个过程极其痛苦，好在最后顺利的保了研。九月还过了一次回想起来还是非常开心的生日。<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1603803753/DF753D32318538769EEE485E29DFAAEF_ar1zra.jpg" alt=""></p>
+<h3 id="十月·实习"><a href="#十月·实习" class="headerlink" title="十月·实习"></a>十月·实习</h3><p>投了三家公司，去了回复最快的那一家（对，就是Intel)。还有一家愿意要我的组是做游戏的，不太感兴趣就没去。还有一家回复的实在太慢，十月中旬才打电话来笔试(╬▔皿▔)凸</p>
+<p>十月十四号，终于尘埃落地收到了清华大学的预录取通知。说不上多么开心，也说不上多么难受。不是很开心是因为原计划出国读书，恰好年初在Dartmouth度过了愉快的四个月，去完一趟美国之后更加憧憬在那里度过一段学习的时光了，最后没能去成，有一种曾经沧海难为水的感觉。但也不是很难受，研究生的导师出了名的好，师兄师姐也很热情，上周旁听了一次组会，组里氛围也很棒。那就随遇而安吧(<em>^_^</em>)<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1603804400/IMG_1058_20201027-211306_vsrzgg.jpg" alt=""></p>
+<p>十月二十二日，UIST会议在线上召开，寒研的论文终于发表出来啦！回想那段时光，又辛苦又开心。</p>
+<p>9.28开始在上海intel实习。组里做quantize aware training的，来之前我对这个领域一无所知，只知道是机器学习优化、面试的时候觉得这个工作挺有意思的就来了。来之后日常懵逼，疯狂补概念。最近几天会再写一篇博文谈谈自己对quantize aware training的理解。实习遇到的人都很好，虽然他们不太会表达但是时间久了还是可以感受到大家满满的善意❤。感觉自己又菜又牛。目前仍然在适应实习的环境中，每天问自己无数次：“我是谁？我在哪？我要做什么？”。但还是时常感到茫然，开始怀疑人生：我是不是不适合做这种工作？我大学期间是不是过的太顺利了没遇到过一点挫折，才导致现在遇到挑战之后非常难受？有时候也会上升到开始思考人生的意义( ﹁ ﹁ ) ~→可能是我书读的太少，对于社会和心理的认知不够，才会陷入这样的迷茫吧。买了一些书，还是要多读书，尽量不要让自己陷在“书读的太少而想得太多”的困境中。</p>
+<p>在上海租的小房子经过我一个月以来的收拾，变得非常的温馨啦。阳光洒进来，满屋子都是温暖的味道。<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1603805430/E911F452FC56363BAD7FC64E944D825F_dfdzzj.jpg" alt=""></p>
+<h3 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h3><p>仿佛困在围城中，晚安(￣o￣) . z Z</p>
+]]></content>
+      <tags>
+        <tag>LIFE</tag>
       </tags>
   </entry>
 </search>
