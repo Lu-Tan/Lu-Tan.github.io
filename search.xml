@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/04/25/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Neural Approaches to Conversational AI</title>
+    <url>/2020/04/26/Neural-Approaches-to-Conversational-AI/</url>
+    <content><![CDATA[<h3 id="What’s-new"><a href="#What’s-new" class="headerlink" title="What’s new?"></a>What’s new?</h3><ol>
+<li><strong>We group conversational systems into three categories: (1) question answering agents, (2) task-oriented dialogue agents, and (3)chatbots, with a unified view of optimal decision making</strong></li>
+<li><strong>Draw connections between neural approaches to traditional ones</strong></li>
+<li><strong>Present approaches to training dialogue agents using both supervised and reinforcement(++) learning.</strong></li>
+<li><strong>Progress and challenges both in research community and industry.</strong></li>
+</ol>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
+<li><p>Why we get promising results?</p>
+<ol>
+<li>large amounts of data available for training.</li>
+<li>breakthroughs in deep learning and reinforcement learning.</li>
+</ol>
+</li>
+<li><p>A typical task-oriented dialogue agent is composed of four modules:<br>  <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1587927050/1111_zxlmue.png" alt=""></p>
+<ol>
+<li>NLU(Understanding): identify user intents, extract associate info.</li>
+<li>State Tracker: capture all essential info, track the dialogue state.</li>
+<li>Dialogue Policy: select the next action based on the current state.</li>
+<li>NLG(Generation): convert agent actions to natural language responses.</li>
+</ol>
+<ul>
+<li>But recent trend: Develope fully data-driven systems by unifying these modules using a deep neural network that maps the user input to the agent output DIRECTLY.</li>
+</ul>
+</li>
+<li><p>Difference in modular or not:</p>
+<ul>
+<li>Task-oriented bots:<ul>
+<li>access to an external database</li>
+<li>using a modular system</li>
+</ul>
+</li>
+<li>Social chatbots:<ul>
+<li>To be AI companions to humans with an emotional connection</li>
+<li>mimic human conversation by training DNN-based response generation models on large amounts of human-human conversational data.</li>
+<li>non-modular system</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Dialogue can be formulated as a decision making process.</p>
+<ul>
+<li>hierarchy<ul>
+<li>top level: selects what agent be active</li>
+<li>low level: chooses primitive actions to complete the subtask</li>
+</ul>
+</li>
+<li>Hierachical decision making processes can be cast in options over Markov Decision Processes(Sutton et al)<ul>
+<li>This view has already been applied to some large-scale open-domain dialogue systems.</li>
+</ul>
+</li>
+<li>If we view each option as an action, both top and low level processes can be natually captured by the reinforcement learning framework.<ul>
+<li>Reinforcement learning is an area of machine learning concerned with how software agents ought to take actions in an environment in order to maximize the notion of cumulative reward. Reinforcement learning is one of three basic machine learning paradigms, alongside supervised learning and unsupervised learning.</li>
+<li>The goal of dialogue learning is to find optimal policies to maximize expected rewards.</li>
+<li>rewards functions:<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1587945852/222_ctrk2x.png" alt=""></li>
+<li><strong>controdictary rewards CPS for xiaoice?</strong><ul>
+<li>Although incorporating many task-oriented and QA skills can reduce CPS in the short term since these skills help users accomplish tasks more efficiently by minimizing CPS, these new skills establish XiaoIce as an efficient and trustworthy personal assistant, thus strengthening the emotional bond with human users in the long run.</li>
+</ul>
+</li>
+<li>limit of RL view:<ul>
+<li>applying RL requires training the agents by interacting with real users, which can be expensive in many domains.</li>
+<li>solution<ul>
+<li>hybrid approach: combines the strengths of different ML methods.</li>
+<li>For example, we might use imitation and/or supervised learning methods (if there is a large amount of human-human conversational corpus) to obtain a reasonably good agent before applying RL to continue improving it.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Symbolic V.S Neural approaches<br>  <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1587950076/333_jcwtrl.png" alt=""></p>
+<ul>
+<li><p><strong>neural approaches</strong>:</p>
+<ul>
+<li><strong>can be trained in an end-to-end fasion</strong></li>
+<li><strong>robust to paraphrase alternations(detecting and generating paraphrases)</strong></li>
+<li><strong>weak in terms of execution efficiency and explicit interpretability</strong></li>
+</ul>
+</li>
+<li><p><strong>symbolic approaches</strong></p>
+<ul>
+<li><strong>sensitive to paraphrase alternations</strong></li>
+<li><strong>more interpretable and efficient in execution.</strong></li>
+<li><strong>difficult to train</strong></li>
+</ul>
+</li>
+<li><p>Symbolic approaches</p>
+<ul>
+<li>dominated for decades</li>
+<li>resolve natural language ambiguity at different levels by mapping (or generating) a natural language sentence to (or from) a series of human-defined, unambiguous, symbolic representations, such as Part-Of-Speech (POS) tags, context free grammar, first-order predicate calculus.</li>
+<li>now: have been adapted as a rich source of engineered features to be fed into a variety of machine learning models</li>
+</ul>
+</li>
+<li><p>neural approaches</p>
+<ul>
+<li>do not rely on any human-defined symbolic representations</li>
+<li>learn in a task- specific neural space where task-specific knowledge is implicitly represented as semantic concepts using low-dimensional continuous vectors.</li>
+<li>steps:<ol>
+<li>encoding symbolic user input and knowledge into their neural sematic representations( represent as vectors)</li>
+<li>reasoning: to generate a system response based on input and system state.</li>
+<li>decoding</li>
+</ol>
+<ul>
+<li>the above three steps are stacked into a deep neural network trained in an end-to-end fastionl via back propagation.<ul>
+<li>back propagation:<ul>
+<li>a widely used algorithm in training feedforward neural networks for supervised learning. </li>
+<li>In fitting a neural network, backpropagation computes the gradient of the loss function with respect to the weights of the network for a single input–output example, and does so efficiently, unlike a naive direct computation of the gradient with respect to each weight individually.</li>
+<li>The backpropagation algorithm works by computing the gradient of the loss function with respect to each weight by the chain rule, computing the gradient one layer at a time, iterating backward from the last layer to avoid redundant calculations of intermediate terms in the chain rule; this is an example of dynamic programming.</li>
+</ul>
+</li>
+<li>end-to-end causes: the focus has shifted to carefully tailoring the increasingly complex architecture of neural networks to the end application.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>review: Although neural approaches have already been widely adopted in many AI tasks, including image processing, speech recognition and machine translation (e.g., Goodfellow et al., 2016), their impact on conversational AI has come somewhat more slowly.</li>
+<li>addition merits: neural approaches provide a consistent representation for many modalities, capturing linguistic and non-linguistic (e.g., image and video (Mostafazadeh et al., 2017)) features in the same modeling framework.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Machine Learning Basics for Conversational AI</title>
+    <url>/2020/04/27/Machine-Learning-Basics/</url>
+    <content><![CDATA[<h1 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h1><p><strong>Mitchell</strong> defines: any computer program that improves its performance at some task T, measured by P, through experiences E.</p>
+<ul>
+<li>T:(in conversational AI: perform conversations with a user to fulfill the user’s goal.</li>
+<li>P: cumulative reward<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1587945852/222_ctrk2x.png" alt=""></li>
+<li>E: a set of dialogues</li>
+</ul>
+<h2 id="Surpervised-Learning"><a href="#Surpervised-Learning" class="headerlink" title="Surpervised Learning"></a>Surpervised Learning</h2><h4 id="A-common-recipe-of-building-an-ML-agent-using-supervised-learning-SL-consists-of"><a href="#A-common-recipe-of-building-an-ML-agent-using-supervised-learning-SL-consists-of" class="headerlink" title="A common recipe of building an ML agent using supervised learning (SL) consists of"></a>A common recipe of building an ML agent using supervised learning (SL) consists of</h4><ul>
+<li>a dataset </li>
+<li>The dataset consists of (x, y∗) pairs, where for each input x, there is a ground-truth output y∗. In QA, x consists of an input question and the documents from which an answer is generated, and y∗ is the desired answer provided by a knowledgeable external supervisor</li>
+<li>a model</li>
+<li>a cost function (a.k.a. loss function)<ul>
+<li>The cost function is of the form L(y∗, f(x; θ))</li>
+<li>L(.) is often designed as a smooth function(differentiable everywhere) of error.</li>
+<li>A commonly used cost function that meets these criteria is the mean squared error (MSE)<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588012080/de_bccc3c.png" alt=""></li>
+</ul>
+</li>
+<li>an optimization procedure<ul>
+<li>The optimization can be viewed as a search algorithm to identify the best θ that <strong>minimize L(.)</strong>.<br>Given that L is differentiable, the most widely used optimization procedure for deep learning is mini-batch Stochastic Gradient Descent (SGD) which updates θ after each batch as <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588012262/SGD_yin3qj.png" alt=""> where N is the batch size and α the learning rate.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Common-supervised-learning-metrics"><a href="#Common-supervised-learning-metrics" class="headerlink" title="Common supervised learning metrics"></a>Common supervised learning <strong>metrics</strong></h4><p>regression problems: mean squared error</p>
+<ul>
+<li><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588046494/MSE_uncxsu.png" alt=""></li>
+</ul>
+<p>classification problems</p>
+<ul>
+<li>binary classification: accuracy, precision, recall, F1 Score<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588048090/binary-classification-metrics_kefszn.png" alt=""></li>
+<li>beyond binary: BLEU score</li>
+</ul>
+<h2 id="Reinforcement-Learning"><a href="#Reinforcement-Learning" class="headerlink" title="Reinforcement Learning"></a>Reinforcement Learning</h2><p>Define: In unexplored territories, the agent has to learn how to act by interacting with an unknown environment on its own. </p>
+<h4 id="RL-V-S-SL"><a href="#RL-V-S-SL" class="headerlink" title="RL V.S SL:"></a>RL V.S SL:</h4><p>While SL learns from previous experiences provided by a knowledgeable external supervisor, RL learns by experiencing on its own.</p>
+<h4 id="Feature-of-RL"><a href="#Feature-of-RL" class="headerlink" title="Feature of RL:"></a>Feature of RL:</h4><ol>
+<li>Exploration-exploitation tradeoff. (???)</li>
+</ol>
+<ul>
+<li>exploit: The agent has to exploit what it already knows in order to obtain high rewards.</li>
+<li>explore: The agent has to explore unknown states and actions in order to make better action selections in the future.</li>
+</ul>
+<ol start="2">
+<li><p>Delayed reward and temporal credit assignment.<br>The agent has to determine which of the actions in its sequence are to be credited with producing the eventual reward.</p>
+</li>
+<li><p>Partially observed states.<br>In many RL problems, the observation perceived from the environment at each step, e.g., user input in each dialogue turn, provides only partial information about the entire state of the environment based on which the agent selects the next action.<br>Neural approaches learn a deep neural network to represent the state by <strong>encoding all information</strong> observed at the current and past steps.</p>
+</li>
+</ol>
+<h4 id="A-central-challenge-in-both-RL-and-SL-generalization"><a href="#A-central-challenge-in-both-RL-and-SL-generalization" class="headerlink" title="A central challenge in both RL and SL: generalization"></a>A central challenge in both RL and SL: <strong>generalization</strong></h4><p>the ability to perform well on unseen inputs.</p>
+<ul>
+<li>solution: neural approaches provide a potentially more effective solution by <strong>leveraging the representation</strong>(?) learning power of deep neural networks.</li>
+</ul>
+<h1 id="Deep-Learning"><a href="#Deep-Learning" class="headerlink" title="Deep Learning"></a>Deep Learning</h1><h4 id="Deep-learning-V-S-neural-network"><a href="#Deep-learning-V-S-neural-network" class="headerlink" title="Deep learning V.S neural network?"></a>Deep learning V.S neural network?</h4><p>DL involves training neural networks.</p>
+<p><strong>Why Deep?</strong></p>
+<p>The neural networks, in their original form, consisted of a single layer(i.e., the perceptron).</p>
+<p>The perceptron is incapable of learning even simple functions such as logical XOR.</p>
+<p>To solve the problem, we add hidden layers(<strong>Why hiden?</strong>) between input and output. –this is called MLP(multi-layer perceptron) or DNN(deep neural networks).</p>
+<h2 id="commonly-used-DNNs-for-NLP-amp-IR"><a href="#commonly-used-DNNs-for-NLP-amp-IR" class="headerlink" title="commonly used DNNs for NLP &amp; IR"></a>commonly used DNNs for NLP &amp; IR</h2><h3 id="Softmax-function"><a href="#Softmax-function" class="headerlink" title="Softmax function"></a><strong>Softmax function</strong></h3><p>An activation function.</p>
+<p>It outputs a vector that represents the probability distributions of a list of potential outcomes.</p>
+<h3 id="normalization-step-taking-exponentials-sums-and-division"><a href="#normalization-step-taking-exponentials-sums-and-division" class="headerlink" title="normalization step: taking exponentials, sums and division."></a><strong>normalization step: taking exponentials, sums and division.</strong></h3><p>ex. Softmax function turns logits [2.0, 1.0, 0.1] into probabilities [0.7, 0.2, 0.1], and the probabilities sum to 1.<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588104301/softmax_wy6yoa.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">logits &#x3D; [2.0, 1.0, 0.1]</span><br><span class="line">exps &#x3D; [np.exp(i) for i in logits]</span><br><span class="line">sum_of_exps &#x3D; sum(exps)</span><br><span class="line">softmax &#x3D; [j&#x2F;sum_of_exps for j in exps]</span><br><span class="line">print(&quot;softmax:&#123;&#125;&quot;.format(softmax))</span><br></pre></td></tr></table></figure>
+
+<p><em>Why we need exponents?</em></p>
+<ul>
+<li>Logits ranges from negative infinity to positive infinity. When logits are negative, adding it together does not give us the correct normalization. Exponentiate logitsturn them them zero or positive!</li>
+</ul>
+<p><em>Why special number e?</em></p>
+<ul>
+<li>e exponents also makes the math easier later! log(a*b)= log(a)+log(b)</li>
+</ul>
+<p><em>logits layer means the last neuron layer of neural network for classification task which produces raw prediction values.</em></p>
+<p><em>Logits: numeric output of the last linear layer of a multi-class classification neural network. Before activation takes place.</em></p>
+<p>Softmax function is <em>frequently appended to</em> the last layer of an image classification network such as cnn.</p>
+<ul>
+<li><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588105160/soft2_a3nsm6.png" alt=""></li>
+</ul>
+<h2 id="classical-ML-V-S-DL"><a href="#classical-ML-V-S-DL" class="headerlink" title="classical-ML V.S DL"></a>classical-ML V.S DL</h2><p><em>Ex: text classification</em></p>
+<h3 id="classical-ML"><a href="#classical-ML" class="headerlink" title="classical ML:"></a>classical ML:</h3><ol>
+<li>Map a text string to a vector representation <strong>x</strong>, using a set of <strong>hand-engineered</strong> features.</li>
+<li>Learn a linear classifier with a softmax layer to compute the distribution.</li>
+</ol>
+<p><em>Design effort: feature engineering</em></p>
+<h3 id="DL"><a href="#DL" class="headerlink" title="DL"></a>DL</h3><p>Jointly optimize the <em>feature representation</em> and <em>classification</em> using a DNN.</p>
+<p><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588128439/ml-vs-dl_nel4rq.png" alt=""></p>
+<p>DNN consists of two halves:</p>
+<ol>
+<li>top half: linear classifier, similar to classical ML.</li>
+<li>The input vector of top half is <strong>not from hand-engineered features</strong>, but learned using the bottom half of the DNN.</li>
+</ol>
+<p><em>Design Effort: optimize DNN architectures for effective representation learning.</em></p>
+<h2 id="Which-NN-neural-network-to-choose"><a href="#Which-NN-neural-network-to-choose" class="headerlink" title="Which NN(neural network) to choose?"></a>Which NN(neural network) to choose?</h2><p><strong>Depend on the type of linguistic structures that we hope to capture in the text.</strong></p>
+<ol>
+<li><p>Option 1: Word Embedding Layers</p>
+<p>Map each word to a m-dimensional real-valued vector.</p>
+</li>
+<li><p>Option 2： Fully Connected Layers</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[BASIC]Word Embedding</title>
+    <url>/2020/04/30/BASIC-Word-Embedding/</url>
+    <content><![CDATA[<h1 id="Word-Embedding-layers"><a href="#Word-Embedding-layers" class="headerlink" title="Word Embedding layers"></a>Word Embedding layers</h1><h2 id="Define-word-embedding"><a href="#Define-word-embedding" class="headerlink" title="Define word embedding"></a>Define word embedding</h2><p>Word embeddings are a type of word representation that allows words with similar meaning to have a similar representation.</p>
+<p>Word embeddings are in fact a class of techniques where individual words are represented as real-valued vectors in a predefined vector space. Each word is mapped to one vector and the vector values are learned in a way that resembles a neural network, <strong>based on the usage of the words.</strong></p>
+<p>Each word is represented as a <strong>one hot</strong> vector, whose dimensionality <em>n</em> is the size of a pre-defined voca<br>bulary. The vocabulary is often too large. Word embedding model is to map each one-hot vector to a m-dimensional real-valued vector. m 《 n. The number of features is much smaller than the size of the vocabulary.</p>
+<h3 id="one-hot"><a href="#one-hot" class="headerlink" title="one-hot"></a>one-hot</h3><p>EX1: Suppose you have ‘flower’ feature which can take values ‘daffodil’, ‘lily’, and ‘rose’. One hot encoding converts ‘flower’ feature to three features, ‘is_daffodil’, ‘is_lily’, and ‘is_rose’ which all are binary.</p>
+<p>EX2: <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588178728/one-hot_qa7mmr.png" alt=""></p>
+<p>Word embeddng is one of the key breakthroughs of DL on challenging NLP.  </p>
+<ol>
+<li><strong>low-dimensinal vector</strong>: the majority of neural network toolkits do not play well with very high-dimensional, sparse vectors</li>
+<li><strong>dense vector</strong>:  it is worthwhile to provide a representation that is able to capture these similarities on features.</li>
+</ol>
+<h2 id="Word-embedding-algorithms"><a href="#Word-embedding-algorithms" class="headerlink" title="Word embedding algorithms"></a>Word embedding algorithms</h2><p><strong>Word embedding methods are learning process.</strong></p>
+<p>They learn a <em>real-valued vector representation</em> for a predefined fixed sized vocabulary <em>from a corpus of text</em>.</p>
+<p>Two types of learning process:</p>
+<ol>
+<li>Joint with neural network model on some task.</li>
+<li>Unsupervised process, using document statistics.</li>
+</ol>
+<p>Three ways to learn a word embedding:</p>
+<p><strong>1.Embedding layer</strong></p>
+<p>It’s a word embedding, which is learned jointly with a <em>neural network model</em> on a <em>specific</em> natural language processing task(ex: language modeling or document classification).</p>
+<p>It’s <em>used</em> on the front end of a neural network and is fit in a supervised way using a Backpropagation algorithm.</p>
+<p>It requires that document text be cleaned and prepared such that each word is one-hot encoded.</p>
+<ul>
+<li>disadvantage: It requires a lot of training data and can be slow</li>
+<li>advantage: It will learn an embedding both targeted to the <em>specific text data</em> and the <em>NLP task</em>.</li>
+</ul>
+<p><strong>2. Word2Vec</strong></p>
+<p>It is <strong>effient</strong>, good at capturing syntactic and semantic regularities, learns a <em>standalone</em> word embedding from a text corpus.</p>
+<pre><code>low space and time complexity
+more dimensions
+much larger corpora of text </code></pre><p><strong>Ex: King - man + woman = Queen.</strong></p>
+<p>– Word2Vec involved analysis of the learned vectors and the exploration of vector math on the representations of words. </p>
+<p><em>Two different models</em>:</p>
+<ul>
+<li><p>CBOW(continuous Bag-of-Words) model</p>
+<p>  CBOW learns the embedding by predicting the current word based on its context.</p>
+</li>
+<li><p>Continuous Skip-Gram Model</p>
+<p>  It learns by predicting the surrounding words given a current word.</p>
+</li>
+</ul>
+<p><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588197753/word2vec_j3hnqr.png" alt=""></p>
+<p><strong>Size of sliding winodw</strong><br>The context is defined by a window of neighboring words. This window is a configurable parameter of the model.</p>
+<p>Large windows tend to produce more topical similarities, while smaller windows tend to produce more functional and syntactic similarities.</p>
+<p><strong>3.GloVe: The Global Vectors for Word Representation</strong></p>
+<p>It is an extension to the word2vec method for efficiently learning word vectors. GloVe is an approach to marry both the <em>global statistics of matrix factorization techniques</em> like LSA with the <em>local context-based learning</em> in word2vec.</p>
+<ul>
+<li>LSA(latent semantic analysis): It’s for analyzing relationships between a set of documents and the terms they contain by <em>producing a set of concepts related to the documents and terms</em>. LSA assumes that <em>words that are close in meaning will occur in similar pieces of text</em>. A matrix containing word counts per document (rows represent unique words and columns represent each document). Documents are then compared by taking the cosine of the angle between the two vectors (or the dot product between the normalizations of the two vectors) formed by any two columns. Values close to 1 represent very similar documents while values close to 0 represent very dissimilar documents</li>
+</ul>
+<p>Rather than using a window to define local context, <em>GloVe constructs an explicit word-context or word co-occurrence matrix using statistics across the whole text corpus.</em></p>
+<p>GloVe performs well at word analogy, word similarity, and named entity recognition tasks.</p>
+]]></content>
+      <tags>
+        <tag>BASIC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>interview0503</title>
+    <url>/2020/05/03/interview0503/</url>
+    <content><![CDATA[<h1 id="Possible-Questions"><a href="#Possible-Questions" class="headerlink" title="Possible Questions"></a>Possible Questions</h1><h2 id="1-Duration-of-your-summer-internship"><a href="#1-Duration-of-your-summer-internship" class="headerlink" title="1. Duration of your summer internship."></a>1. Duration of your summer internship.</h2><p>‘’’<br>AAAI 截稿时间：9.5<br>ICAART(International Conference on Agents and Artificial Intelligence):10.4<br>ICLR( International Conference on Learning Representations):9.25<br>‘’’</p>
+<p>I have plenty of time.<br>I am available from the first of June to the thirtieth of Sep, Since I am preparing for Toefl and GRE in May.<br>I have finished all required courses in Wuhan University, Thus I can continue to work after the thirtieth of Sep, maybe for half of a year.</p>
+<p>签证问题：<br>Currently I am still in USA and my visa expires in October. I prefer to work in your lab rather than remote. I will appreciate it if we can make it.</p>
+<h2 id="2-Any-potential-research-directions-you-might-be-interested-in"><a href="#2-Any-potential-research-directions-you-might-be-interested-in" class="headerlink" title="2. Any potential research directions you might be interested in?"></a>2. Any potential research directions you might be interested in?</h2><ul>
+<li>I am interested in conversitional AI.</li>
+<li>3 kinds of problems a dialogue system is expected to solve:<ol>
+<li>Question answering: provide concise, direct answers to user queries.</li>
+<li>Task completion: range from reservation to meeting scheduling</li>
+<li>Social chat: Like a human as in the Turing test. Converse seamlessly and appropriately with users.</li>
+</ol>
+</li>
+</ul>
+<h2 id="3-The-NLP-and-HCI-projects-you-mentioned-are-very-different-from-each-other"><a href="#3-The-NLP-and-HCI-projects-you-mentioned-are-very-different-from-each-other" class="headerlink" title="3.The NLP and HCI projects you mentioned are very different from each other."></a>3.The NLP and HCI projects you mentioned are <em>very different</em> from each other.</h2><ul>
+<li>Yep, actually there’s no connection between them. Both natural language processing and embedded equipment are of my passion. I plan to be a Phd student and it’s hard to make choice. So I’d like to try both of them to see which one suits me best.</li>
+</ul>
+<h3 id="NLP-projects"><a href="#NLP-projects" class="headerlink" title="NLP projects"></a>NLP projects</h3><p><strong>1. Intelligent Judge</strong></p>
+<ul>
+<li><p>Time: summer of twenty nineteen.</p>
+</li>
+<li><p>Project: Our system is able to <strong>analyze legal information based on semantics</strong> and <strong>make legal predictions from the legal data set</strong>, and hence it helps the judiciary system in automation thereby increasing the efficiency within affordable budget. </p>
+</li>
+<li><p>My task:</p>
+<ul>
+<li><ol>
+<li>Chinese word segmentation</li>
+</ol>
+<ul>
+<li><p>CRF++ toolkit<br>  CRF++ is an open-source implementation of Conditional Random Fields for segmenting/labeling sequential data.</p>
+<ul>
+<li><p>Usage<br>Both the training and testing files need to be in a particular format. They must consist of multiple tokens.<br>A token consists of multiple columns. Each token must be represented in one line.<br>Sentence: A sequence of token becomes a sentence. To identify the boundary between sentences, an empty line is put.<br>The last column represents a true answer tag which is going to be trained by CRF.</p>
+</li>
+<li><p><strong>Steps</strong></p>
+</li>
+<li><p><strong>step 1</strong>:Make training file and test file in a particular format.</p>
+</li>
+<li><p><strong>step 2</strong>：Prepare feature templates. This file describes which features are used in training and testing.</p>
+<p>  Special macro%x[row,col] will be used to specify a token in the input data. row specfies the relative position from the current focusing token and col specifies the absolute position of the column.</p>
+</li>
+<li><p><strong>step 3</strong>：Training(encoding)</p>
+</li>
+<li><p><strong>step 4</strong>: Testing(decoding)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Why CRF++?</p>
+<ul>
+<li><ol>
+<li>CRF V.S Dictionary-based word segmentation：<br>Dictionary-based word segmentation relies too much on dictionaries and rule bases, so it has low recognition ability for ambiguous words and unregistered words. But it’s efficicy.</li>
+</ol>
+<p>CRF not only considers the frequency of the words, but also the context, thus has a good learning ability. Therefore, it performs well at the recognition of ambiguous words and unregistered words; BUT the training period is longer and it needs large amount of calculation.</p>
+</li>
+<li><ol start="2">
+<li>CRF V.S HMM：<br>One of the biggest disadvantages of the hidden Markov model is that due to its output independence assumption, it cannot consider the characteristics of the context, which limits the choice of features.<br>Assumption of HMM:</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>p(si|si-1,si-2,…,s1) = p(si|si-1)</li>
+<li>P(si+1|si)=p(sj+1,sj) There’s no connection between state and time.</li>
+<li>P(o1,…ot|s1,…st) = P(ot|qt) Output is only relavant to current state.</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li><p>Event extraction<br> Event extraction is the process of gathering knowledge about periodical incidents found in texts, automatically identifying information about <em>what happened and when it happened</em>.</p>
+<p> In that project, I am responsible for namekd entity recognition. That’s about extracting named entities such as name, time, location, consequence and so on from legal documents.<br> LSTM-CRF is a state-of-the-art approach to named entity recognition.<br> <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588532677/namekd_cuekww.png" alt=""></p>
+</li>
+</ol>
+<ul>
+<li><p>Why we choose CRF+LSTM?</p>
+</li>
+<li><ol>
+<li>Classical Approaches V.S CRF<br>Classical approaches are mostly rule-based.</li>
+</ol>
+</li>
+<li><ol start="2">
+<li><p>ML V.S CRF<br>One way of ML: A- treat the problem as a multi-class classification where named entities are our labels so we can apply different classification algorithms.<br><strong>BUT</strong>: This method ignores (1)the thorough understanding of the context of a sentence (2)the sequence of the word labels in it.</p>
+<p>Another way: B- is CRF(Conditional Random Field) model. This model is a graphical model, can be used to model sequential data such as labels of words in a sequence.<br><strong>BUT</strong>: Though CRF model is able to capture the features of the current and previou labels in a sequence, it <em>can’t</em> understand the context of the forward labels.</p>
+</li>
+</ol>
+</li>
+<li><ol start="3">
+<li><p>DL: state-of-the-art</p>
+<ul>
+<li>Metrics: F1, not accuracy<br>Accuracy: It’s common to use it while training a neural network in different iterations. </li>
+</ul>
+<p>F1: Because false positives and false negatives have a business cost in a NER task, we use F1 to balance between precision and recall.<br>precision = tp / (tp + fp)<br>recall = tp / (tp + fn)</p>
+<ul>
+<li>standard LSTM<br>It only take the “past” information in a sequence of the text into account. </li>
+</ul>
+<p><strong>BUT</strong> in named entity recognition, we need to take both the past and the future labels in sequence.</p>
+<ul>
+<li>Recurrent neural networks(RNN)<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588543758/RNN2_on8ofu.png" alt=""><br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588543792/rnn3_fatuql.png" alt=""><br>A RNN <strong>maintains a memory based on history information</strong>, which enables the model to predict the current output conditioned on long distance features.</li>
+</ul>
+<p><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588541643/RNN_tdp8rd.png" alt=""><br>input layer: <em>x</em>: input features. One-hot-encoding. An input layer has the same dimensionality as feature size.</p>
+<p>hidden layer <em>h</em>: hidden state. The RNN introduces the connection between the previous hidden state and current hidden state. Thus the recurrent layer weight parameters. The recurrent layer is designed to store history information.<br><strong>h(t) = f( U x(t) + W h(t − 1) )</strong><br>U and W are the connection weights to be computed in training time, f(z) are sigmoid activation function. <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588542223/sigmoid_qdp7g6.png" alt=""></p>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code> output layer *y*: tags. It presents a probability distribution over labels. It has the same dimensionality as size of labels.
+ **y(t) = g( V h(t) )**
+ V is connection weight to be computed in training time, g(z) are softmax activation function. ![](https://res.cloudinary.com/dmfrqkuif/image/upload/v1588542335/softmax3_i2eesu.png)
+
+- LSTM Networks
+ Long Short Term Memory networks are the same as RNNs, except that **the hidden layer updates are replaced by purpose-built memory cells**. As a result, they may be better at finding and exploiting long range dependencies in the data.
+ ![](https://res.cloudinary.com/dmfrqkuif/image/upload/v1588543847/RNN4_ae5jsj.png)
+ ![](https://res.cloudinary.com/dmfrqkuif/image/upload/v1588543880/LSTM_fyarr4.png)
+ Step by step of LSTM: https://colah.github.io/posts/2015-08-Understanding-LSTMs/
+
+- CRF+LSTM
+This network can efficiently use past input features via a LSTM layer and sentence level tag information via a CRF layer.</code></pre><ul>
+<li><ol start="3">
+<li>Result prediction</li>
+</ol>
+<ul>
+<li>word vector + CNN</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. Conversation on movie themes</strong></p>
+<ul>
+<li><p>Time: Fall of twenty nineteen.</p>
+</li>
+<li><p>Project: Conversation robot on the topic of movies.</p>
+</li>
+<li><p>My Task: comparative experiments</p>
+<ul>
+<li><ol>
+<li>Organize the data set into the form required by the model.</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Training, tunning and saving model.</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Comparing performance of Bert, BiDAF, Transformer</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>Bert: Bidirectional Encoder Representations from Transformers<br>  BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers.</p>
+</li>
+<li><p>Transformer<br>Where does it play a role?<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588551207/transformer-role_vv3eex.png" alt=""><br>The highlighted words refer to the same person – Griezmann, a popular football player. </p>
+<ul>
+<li>Seq 2 seq<br> <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588551411/seq2seq_nzlfq2.png" alt=""><br> The task of an encoder network is to understand the input sequence, and create a <em>smaller</em> dimensional representation of it. This representation is then forwarded to a decoder network which generates a sequence of its own that represents the output. <pre><code>- Beam search: It greedily find out the most probable word at each time step.Beam search takes into account the probability of the next k words in the sequence, and then chooses the proposal with the max combined probability.
+- attention mechanism: Instead of encoding the input sequence into a single fixed context vector, we let the model learn how to generate a context vector for each output time step. That is we let the model learn what to attend based on the input sentence and what it has produced so far.</code></pre></li>
+</ul>
+</li>
+<li><p>BiDAF(Bi-Directional Attention Flow)<br>   A multi-stage hierarchical process that represents the context at different levels of granularity and uses bi-directional attention flow mechanism to obtain a query-aware context representation without early summarization. Our experimental evaluations show that our model achieves the state-of-the-art results in Stanford Question Answering Dataset (SQuAD) and CNN/DailyMail cloze test.</p>
+</li>
+</ul>
+<h3 id="HCI-projects"><a href="#HCI-projects" class="headerlink" title="HCI projects"></a>HCI projects</h3><ul>
+<li>Time: Winter of twenty twenty</li>
+<li>Project: A contact-based object recognition technique on interactive fabrics using capacitive sensing.</li>
+<li>My Task:<ul>
+<li><ol>
+<li>Design experiments</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Write code</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Write part of the paper.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>碎碎念-前途未卜</title>
+    <url>/2020/05/20/%E7%A2%8E%E7%A2%8E%E5%BF%B5-%E5%89%8D%E9%80%94%E6%9C%AA%E5%8D%9C/</url>
+    <content><![CDATA[<h5 id="我们走出人生中几乎所有关键性步骤时，都是在一种难以觉察的情况下顺应内心的结果。"><a href="#我们走出人生中几乎所有关键性步骤时，都是在一种难以觉察的情况下顺应内心的结果。" class="headerlink" title="我们走出人生中几乎所有关键性步骤时，都是在一种难以觉察的情况下顺应内心的结果。"></a>我们走出人生中几乎所有关键性步骤时，都是在一种难以觉察的情况下顺应内心的结果。</h5><p>回国一周啦，在广州集中隔离。虽说是一个人待在房间里面不让出去，看起来有点惨，但我似乎并没有什么难受的感觉。酒店工作人员都很友善，爸妈给的钱也足够多，每天点的外卖都很好吃（广州居然可以通过外卖点到喜茶！！！），手上也一直都有事情做。过去的一周里，前三四天都在急着看Related Work,十篇左右的密密麻麻的英文论文看的头皮发麻嘤嘤嘤，可能是笔记本的屏幕太小了不舒服吧~因为是做信息抽取，不必自己提出算法改进模型之类的，所以还算好上手，学习难度也不是特别大。整理成文档发给老师后，被夸是Very well-organized，哈哈哈我快乐了。</p>
+<p>后面几天花了一天写中华乐教导引的作业，我选的题目是中华乐教在当代的弘扬路径，一不小心写出了一篇习概课文的感觉，果然是多年不写文章、写作能力退化到小学水平。希望以后能抽空多写写博文，练练手也是好的。</p>
+<p>考虑到美国受疫情的影响，我开始考虑起保研的事情。之前想着去美国，其实是有保障的。如果读master,那毕业之后可以高薪工作、也可以继续申请phd。如果读phd，五年读出来又有科研实力又有一堆文章和人脉，不论是工作还是回国拿教职都是极好的。但疫情影响美国经济，这样一来读完master可能找不到工作、需要回国996，那何必出国读两年而不留在国内读呢？ Phd的话预计明年会很难申请，如果老师没有funding不招学生，那就没有phd可读。国内保研的话，人多坑少，竞争那叫一个惨烈。抱着买彩票的心态报名了几个夏令营，感谢愿意为我推荐的超级无敌好的文老师和黄老师~</p>
+<p>偶尔还是会怀念达特茅斯的蓝天、Teyen老板家门口的Connecticut River、轻轻飘落雪花的Hanover小镇。更怀念在实验室废寝忘食又快乐的干活的自己哈哈哈</p>
+<p>关于读研的去向问题，最近问了不少人。参加工作有参加工作的乐趣，也没有想象中的007式的辛苦，工资也比我形象中的高很多；国内读研也有国内的好处，如果跟的是本校最厉害的老师，那硕士期间也会过得很好，老师会支持你的想法，给予很大的帮助；但如果去外校读研，将面临导师很水的风险，本校本科生一直以来都是该校硕士的最好生源，好的老师的名额基本上都会分配给本校的学生，外校学生进去本身就很困难、进去之后能跟一个好的老师就更困难，我认为国内去外校保研是一场赌博，不太想冒这个险。国内只报清北的夏令营，能不能去都随缘；暑假的主要精力还是放在出国的准备方面：做暑研；考语言。最后大概率会是老老实实出国~</p>
+<p>虽然疫情的到来导致情况非常复杂，计划赶不上变化，但我也乐于接受变幻莫测的未知的未来、变化未尝不是好事呢？</p>
+]]></content>
+      <tags>
+        <tag>LIFE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Survey-NLP-Health</title>
+    <url>/2020/05/20/Survey-NLP-Health/</url>
+    <content><![CDATA[<h2 id="各篇文章的概述"><a href="#各篇文章的概述" class="headerlink" title="各篇文章的概述"></a>各篇文章的概述</h2><h3 id="Large-scale-Analysis-of-Counseling-Conversations-An-Application-of-Natural-Language-Processing-to-Mental-Health"><a href="#Large-scale-Analysis-of-Counseling-Conversations-An-Application-of-Natural-Language-Processing-to-Mental-Health" class="headerlink" title="Large-scale Analysis of Counseling Conversations: An Application of Natural Language Processing to Mental Health"></a>Large-scale Analysis of Counseling Conversations: An Application of Natural Language Processing to Mental Health</h3><p>自然语言处理在心理健康领域的一个应用：分析大规模的咨询对话。</p>
+<p><strong>研究的出发点：</strong></p>
+<p>由于过去缺乏大规模的带有标记了的结果的对话数据，我们一直都没搞清楚应该如何引导成功的咨询对话。</p>
+<p><strong>我们的努力</strong></p>
+<p>我们在以文字为沟通方式的对话数据上，做了大规模的量化的研究。通过计算机来衡量语言学方面是如何影响到对话结果的。</p>
+<p><strong>Contribution</strong></p>
+<ol>
+<li>是目前为止的最大规模的咨询对话策略方面的研究</li>
+<li>特别的，我们注重分析咨询师，而不是分析病人。因为我们感兴趣的是通用的对话策略研究、而不是具体某一个话题。</li>
+<li>我们找到了切实可行的对话策略：: Adaptability; Dealing with ambiguity; Creativity; Making progress; Change in perspective.</li>
+<li>我们证明了对话的结果是可以通过我们发现的那些策略特征来预测的。</li>
+</ol>
+<p><strong>评价</strong></p>
+<p>我挺喜欢这篇文章的，希望我们也可以做出类似的东西。感觉行文非常自然，顺畅。</p>
+<h3 id="The-Channel-Matters-Self-disclosure-Reciprocity-and-Social-Support-in-Online-Cancer-Support-Groups"><a href="#The-Channel-Matters-Self-disclosure-Reciprocity-and-Social-Support-in-Online-Cancer-Support-Groups" class="headerlink" title="The Channel Matters: Self-disclosure, Reciprocity and Social Support in Online Cancer Support Groups"></a>The Channel Matters: Self-disclosure, Reciprocity and Social Support in Online Cancer Support Groups</h3><p>channel影响了在线癌症支持小组中人们发朋友圈吐槽和为他人提供支持鼓励的方式</p>
+<p><strong>研究的出发点</strong> </p>
+<p>我们想知道 之前的对于 人们在通用网站（facebook)上面使用不同的channel进行自我表露（发朋友圈）的方式的 的研究是不是适用于在线健康支持小组中。</p>
+<p><strong>我们检测了这些方面</strong> </p>
+<ol>
+<li>在在线癌症支持小组中，人们使用公开的channel和私密的channel发朋友圈的不同方式。</li>
+<li>channel是如何平衡好发朋友圈吐槽和提供支持帮助这两个方面的。</li>
+</ol>
+<h3 id="Causal-Factors-of-Effective-Psychosocial-Outcomes-in-Online-Mental-Health-Communities"><a href="#Causal-Factors-of-Effective-Psychosocial-Outcomes-in-Online-Mental-Health-Communities" class="headerlink" title="Causal Factors of Effective Psychosocial Outcomes in Online Mental Health Communities"></a>Causal Factors of Effective Psychosocial Outcomes in Online Mental Health Communities</h3><p>在线心理健康社区中，产生有效的社交心理学效果的一些原因</p>
+<p><strong>研究的出发点</strong></p>
+<p>我们好奇：同伴间的支持（peer support）中的哪些因素造成了有效的社交对话效果？</p>
+<p><strong>Contribution</strong></p>
+<p>我们使用个例对照法（case-control)来研究是什么因素导致了有效的支持。<br>个例对照法来自于流行病学，它的好处是：不像正因果推论法（ forward causal inference methods）需要把变量二进制化，我们保留原值。这个方法对于①结果是明确定义的②因素是连续变量的分析是很有效的。<br>我们的方法不仅可以同时研究多个因素的影响，还可以研究单个因素在多大程度上有影响。</p>
+<h3 id="Trouble-on-the-Horizon-Forecasting-the-Derailment-of-Online-Conversations-as-they-Develop"><a href="#Trouble-on-the-Horizon-Forecasting-the-Derailment-of-Online-Conversations-as-they-Develop" class="headerlink" title="Trouble on the Horizon: Forecasting the Derailment of Online Conversations as they Develop"></a>Trouble on the Horizon: Forecasting the Derailment of Online Conversations as they Develop</h3><p>在对话中的冲突出现之前就预测到即将产生的冲突</p>
+<p><strong>研究的出发点</strong></p>
+<p>在线的聊天中，大家可能聊着聊着就发生了冲突、争吵、攻击对方。最近别人的研究主要在检测单句话中的引起社交冲突(antisocial bahavior)，在聊天结束之后才来分析。我们想要在对话中出现冲突之前及时预测到即将出现冲突。<br>要实现预测有几个难题：</p>
+<ol>
+<li>对话是动态的，产生什么结果是取决于后续双方的交流。之前的解决方式是：主要依赖于手工制作的feature来找到冲突。也有人用neural attention的方式来解决。</li>
+<li>对话的长度不定，需要预测的可能出现的冲突可能随时出现。之前的工作是：①预测发生冲突的时间，在那个时间到的时候来检查；②从固定大小的窗口中抽取特征。（吐槽点：window-size?)</li>
+</ol>
+<p><strong>Contribution</strong></p>
+<ol>
+<li>一个模型：可以在对话发生的过程中实现预测。</li>
+<li>通过实时分析各个语句以及他们的关系，克服了那几个难题。</li>
+<li><strong><em>在对话预测领域第一个使用pre-train-then-fine-tune方法的。</em></strong></li>
+</ol>
+<h3 id="Seekers-Providers-Welcomers-and-Storytellers-Modeling-Social-Roles-in-Online-Health-Communities"><a href="#Seekers-Providers-Welcomers-and-Storytellers-Modeling-Social-Roles-in-Online-Health-Communities" class="headerlink" title="Seekers, Providers, Welcomers, and Storytellers: Modeling Social Roles in Online Health Communities"></a>Seekers, Providers, Welcomers, and Storytellers: Modeling Social Roles in Online Health Communities</h3><p>给在线健康社区中的人进行社会角色建模，分为寻求帮助者，提供帮助者，欢迎新人者，讲故事的人。</p>
+<p><strong>Contribution</strong></p>
+<p>我们从癌症互助社区中，以用户的行为模式为依据，建了11个特定功能的角色模式。<br>我们还研究了角色的动态变化，包括：在用户使用这个社区期间，用户的角色是如何改变的？ 如何根据角色来预测用户是否会长期参与到这个社区中？<br>我们发现，用户频繁的改变自己的角色，从求助者到提供帮助者。整个社区的角色分布还是稳定的。<br>早期就形成特定角色的人在社区中参与时间会更长。</p>
+<h3 id="Linguistic-Markers-Indicating-Therapeutic-Outcomes-of-Social-Media-Disclosures-of-Schizophrenia"><a href="#Linguistic-Markers-Indicating-Therapeutic-Outcomes-of-Social-Media-Disclosures-of-Schizophrenia" class="headerlink" title="Linguistic Markers Indicating Therapeutic Outcomes of Social Media Disclosures of Schizophrenia"></a>Linguistic Markers Indicating Therapeutic Outcomes of Social Media Disclosures of Schizophrenia</h3><p>精神分裂症</p>
+<p><strong>研究的出发点</strong><br>越来越多的人开始在社交媒体网站上倾诉自己的不开心。我们想知道：</p>
+<ol>
+<li>在发朋友圈前后，行为有什么变化？</li>
+<li>这些行为变化中，包括利于治疗的”opening up”吗？</li>
+</ol>
+<p><strong>Contribution</strong></p>
+<ol>
+<li>用量化的方式来找到disclosure前后的时间阶段。</li>
+<li>用一系列语言学的指标来描述disclosure前后的行为变化</li>
+<li>我们找到了disclosure之后产生疗效的因素：improved readability and coherence in language, future orientation, lower self preoccupation, and reduced discussion of symptoms and stigma perceptions</li>
+</ol>
+<p><strong>评论</strong><br>这篇文章我也很喜欢。行文顺畅，逻辑很自然。</p>
+<h3 id="What-Makes-a-Good-Counselor-Learning-to-Distinguish-between-High-quality-and-Low-quality-Counseling-Conversations"><a href="#What-Makes-a-Good-Counselor-Learning-to-Distinguish-between-High-quality-and-Low-quality-Counseling-Conversations" class="headerlink" title="What Makes a Good Counselor? Learning to Distinguish between High-quality and Low-quality Counseling Conversations"></a>What Makes a Good Counselor? Learning to Distinguish between High-quality and Low-quality Counseling Conversations</h3><p>通过分析好咨询师和坏咨询师的不同点，从而找到如何成为一个好的咨询师的方法</p>
+<p><strong>Contribution</strong></p>
+<ol>
+<li>使用来自public sources 的noisy的咨询数据，来分析咨询质量。（实用，点赞👍）</li>
+<li>通过分析对话的各个方面（ turn-by-turn interaction, the sentiment expressed during the interaction, linguistic alignment, and salient topics)，从而找到了高质量咨询的模式。</li>
+<li>通过我们分析中找到的特征和标准N-GRAM特征，提升了咨询质量分类器的精度。</li>
+</ol>
+<h3 id="Moments-of-Change-Analyzing-Peer-Based-Cognitive-Support-in-Online-Mental-Health-Forums"><a href="#Moments-of-Change-Analyzing-Peer-Based-Cognitive-Support-in-Online-Mental-Health-Forums" class="headerlink" title="Moments of Change: Analyzing Peer-Based Cognitive Support in Online Mental Health Forums"></a>Moments of Change: Analyzing Peer-Based Cognitive Support in Online Mental Health Forums</h3><p><strong>研究的出发点</strong><br>重塑不理性的认知可以给心理疾病患者带来积极的认知的改变。我们想知道：在跟朋友的对话中（peer to peer)，这些认知的改变是如何发生的。</p>
+<p><strong>我们的努力</strong></p>
+<ol>
+<li>定义了“a moment of change”.对于一个患者曾经表示负面情绪的话题，只要患者表达了积极的情绪，那我们就称之为”a moment of change”</li>
+<li>提出了一个模型，可以预测一个对话或者一个朋友圈（post)中是否有发生“a moment of change”</li>
+<li>我们提出的SentiTopic模型可以显式的追踪每个post中的话题和情感。据此我们知道重塑认知是如何发生的。</li>
+</ol>
+<p><strong>评价</strong></p>
+<p>这篇我也喜欢233，实时的追踪话题很有趣</p>
+<h3 id="Finding-Your-Voice-The-Linguistic-Development-of-Mental-Health-Counselors"><a href="#Finding-Your-Voice-The-Linguistic-Development-of-Mental-Health-Counselors" class="headerlink" title="Finding Your Voice: The Linguistic Development of Mental Health Counselors"></a>Finding Your Voice: The Linguistic Development of Mental Health Counselors</h3><p>咨询师随着经验的累积 在语言方面的进步</p>
+<p><strong>研究的问题</strong></p>
+<p>随着经验的累积，咨询师在哪种程度上改变他们的linguistic behavior？这个改变的原因是什么？</p>
+<p><strong>我们的工作</strong></p>
+<ol>
+<li>在两个维度量化了咨询师的变化：咨询师自己；咨询师之间<strong>Contribution</strong>由此我们是第一个证明了咨询师确实会随着经验的累积而进步的。</li>
+<li>计算了咨询师的改变的速率</li>
+<li>找到了一些有用的可以导致明显的咨询师改变的原因。</li>
+</ol>
+<p><strong>评价</strong><br>喜欢，“第一个xxx”总给人一种很有用的感觉</p>
+<h3 id="The-role-of-conversation-in-health-care-interventions-enabling-sensemaking-and-learning"><a href="#The-role-of-conversation-in-health-care-interventions-enabling-sensemaking-and-learning" class="headerlink" title="The role of conversation in health care interventions: enabling sensemaking and learning"></a>The role of conversation in health care interventions: enabling sensemaking and learning</h3><p>这是一篇纯粹的心理学研究，分析了对话在保健中的作用：enabling sensemaking and learning。并分析了原因<br>Sensemaking就是遇到期望之外的情况时，如何用以前的知识去解决未知的问题。<br>Learning是通过与外界交换信息，从而调整自己的观点和策略。</p>
+<h2 id="四个问题的回答"><a href="#四个问题的回答" class="headerlink" title="四个问题的回答"></a>四个问题的回答</h2><h3 id="How-do-we-predict-the-quality-of-therapy-conversations-given-the-survey-like-self-reported-satisfaction-score-among-different-mental-health-conditions"><a href="#How-do-we-predict-the-quality-of-therapy-conversations-given-the-survey-like-self-reported-satisfaction-score-among-different-mental-health-conditions" class="headerlink" title="How do we predict the quality of therapy conversations given the survey-like self-reported satisfaction score among different mental health conditions?"></a>How do we predict the quality of therapy conversations given the survey-like self-reported satisfaction score among different mental health conditions?</h3><p>根据Survey-like的表，如何预测对话的治疗质量？</p>
+<p>目前没有人做：ex.5个问题，每个问题评分1-10.<br>目前做的事情：</p>
+<ol>
+<li>根据语言学方面分析咨询质量</li>
+<li>看有没有a moment of change</li>
+<li>问咨询者是否感觉受到了帮助。（我认为不提问“是否”，而是询问“程度”会好一些。</li>
+</ol>
+<h3 id="Given-the-limited-number-of-self-reported-score-how-do-we-build-a-classification-model-that-can-utilize-the-information"><a href="#Given-the-limited-number-of-self-reported-score-how-do-we-build-a-classification-model-that-can-utilize-the-information" class="headerlink" title="Given the limited number of self-reported score, how do we build a classification model that can utilize the information?"></a>Given the limited number of self-reported score, how do we build a classification model that can utilize the information?</h3><p>给定有限数量的question 1中的问卷，我们如何构建分类模型？</p>
+<ol>
+<li>logitic regression模型来预测。（大规模数据）</li>
+<li>pre-train-then-fine-tune（小规模数据）</li>
+<li>SVM （support vector machine classifiers)(小规模)</li>
+</ol>
+<h3 id="How-do-we-discover-the-linguistic-features-that-can-improve-the-quality-of-conversations"><a href="#How-do-we-discover-the-linguistic-features-that-can-improve-the-quality-of-conversations" class="headerlink" title="How do we discover the linguistic features that can improve the quality of conversations?"></a>How do we discover the linguistic features that can improve the quality of conversations?</h3><p>如何找到提升对话质量的语言学特征？</p>
+<p>做的人太多了，不是我们的contribution</p>
+<h3 id="Are-linguistic-features-differ-among-different-mental-health-conditions-If-so-how-should-we-detect-such-differences"><a href="#Are-linguistic-features-differ-among-different-mental-health-conditions-If-so-how-should-we-detect-such-differences" class="headerlink" title="Are linguistic features differ among different mental health conditions? If so, how should we detect such differences?"></a>Are linguistic features differ among different mental health conditions? If so, how should we detect such differences?</h3><p>不同的心理疾病之间的语言学特征相同吗？不同的话，我们如何找到这些不同？</p>
+<p>目前没有人专门研究这个问题，只是零零散散的研究某个方面，比如癌症、精神分裂症。<br>我们可能的contribution:通过查找别人做过的 + 探究别人没做过的 ，做一个心理疾病的汇总工作。</p>
+<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><ol>
+<li>想知道更多有关项目的内容：数据集包含哪些信息、什么格式；我们要做什么事情；我们的Contribution在哪？<br>目前我已知的内容是：有医生和病人之间的1W-2W的数据集，是对话。</li>
+<li>时间安排：暑假除了考GT之外，可能会参加一个夏令营，再没了。时间应该足够，希望制定时间计划。<br>调研工作<br>方法的总体安排<br>分部开始执行<br>写论文<br>修改论文 </li>
+<li>询问老板对于疫情过后留学申请的看法：疫情对Phd招生的影响；对Master工作的影响。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>week1-health</title>
+    <url>/2020/05/21/week1-health/</url>
+    <content><![CDATA[<h3 id="TASK-1W-2W寻找research-topic"><a href="#TASK-1W-2W寻找research-topic" class="headerlink" title="TASK:1W-2W寻找research topic"></a>TASK:1W-2W寻找research topic</h3><p>在给定的数据集下寻找任何可能的research topic.</p>
+<h4 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h4><p>心理疾病：抑郁症，焦躁症。<br>专业的线上抑郁症聊天平台，用户刚进入网站的时候会填一些问题，从而被match一些咨询师。类似于微信一样，患者可以选择同时跟多个人聊天、也可以一直就跟某一个人聊天。聊天的过程中，患者可以like the message(类似于slack)，结束之后患者会填一个evaluation form，说自己是否满意。<br><em>特别的，患者可以选择一直跟某个人聊天</em> ， 这是异于以往任何研究的。我们可以由此添加一个新的Measure:患者下一次是否继续跟某个咨询师聊天。随着聊天的进行，他们的话题、情感都可能会发生变化，可能会更加的亲密。</p>
+<h4 id="inspiration：聊的越多越亲密吗？"><a href="#inspiration：聊的越多越亲密吗？" class="headerlink" title="inspiration：聊的越多越亲密吗？"></a>inspiration：聊的越多越亲密吗？</h4><p>做一个模型，分析亲密程度跟聊天次数、聊天时长的关系；分析话题、情感的变化：是否在linguistic feature上面有变化，例如：</p>
+<ol>
+<li><p>Successful counselors are better at <strong>adapting</strong> to the conversation<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1590033524/02_q7rtvp.png" alt=""><br>分析方式1：① Look for language differences between positive and negative conversations<br>② Observe how this distance changes over time<br>分析方式2：topical congruence &amp; linguistic style accommodation</p>
+</li>
+<li><p>More successful counselors react more strongly to <strong>ambiguous</strong> situations than less successful counselors.<br>分析方式： Compare how more-successful and less-successful counselors react given nearly identical situations</p>
+</li>
+<li><p>More successful counselors use less common/<strong>templated</strong> responses<br>分析方式1：Count the number of similar responses in TF-IDF space for the counselor reaction<br>分析方式2：①Average distance (or diversity) among the responses received(higher, better)<br>②To inspect top keywords in responses received to check if they are generic.</p>
+</li>
+<li><p>More successful counselors <strong>coordinate less</strong> than less successful ones<br>分析方式：① Divide a conversation into 5 stages with unsupervised model.<br>② Compute the average duration in messages of each stage.<br>③ Explore the reason for step2 by analyzing linguistic coordination.<br>分析方式2：<br>Linguistic Style Matching(LSM) and  linguistic Style Coordination(LSC) method</p>
+</li>
+<li><p>Counselor actively induce <strong>perspective change: time, self, sentiment</strong><br>分析方式：Time: the relative amount of words in the LIWC past, present, and future categories<br>Self: relative amount of first person singular pronouns (I, me, mine) versus third person singular/plural pronouns (she, her, him / they, their), again using LIWC.<br>Sentiment: the relative fraction of positive words using the LIWC PosEmo and NegEmo sentiment lexicons.</p>
+</li>
+<li><p>Longer responses and lower <strong>repeatability</strong> of words are more likely to help psychosocial improvement.<br>分析方式：Average length of response &amp; Average number of unique words per response</p>
+</li>
+<li><p>Emotionality: greater <strong>positivity</strong> is associated with effective.<br>分析方式：无</p>
+</li>
+<li><p>Credibility of the Responders: responses from members who are more <strong>active on the platform</strong> seem to be typically more effective.<br>分析方式： responders’ tenure (number of days on the platform) (no difference)<br>interactivity<br>number of posts(no difference)<br>the frequency of posting behavior (posts per day)</p>
+</li>
+<li><p><strong>Average words per turn（ for counselor)，word ratio，sentiment change</strong> of counselor<br>分析方式： Analyze turn-by-turn interaction by calculating each speaker’s average word per turn and word ratio between client and counselor.<br>Divide each session into 5 stages，each stage has similar numbers of turns. We calculate average number of words per stage</p>
+</li>
+<li><p>relation between <strong>topic</strong> and counseling quality<br>分析方式：① meaning extraction method(MEM)， to get resulting word list.<br>② Generate counselor and client matrices containing binary vectors indicating the use of each word by a specific speaker<br>③ Run a Principal Component Analysis (PCA), followed by varimax rotation on each document matrix to find clus- ters of co-occurring nouns. This process results in 10 and 8 components (topics) for counselors and clients respectively</p>
+</li>
+<li><p>linguistic diversity<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1590033397/01_q0krwu.png" alt=""><br>分析方式：STEP 1: Design a general framework aimed at capturing the degree of linguistic diversity.<br>STEP 2: Instantiate this framework in the counseling domain.<br>STEP 3: Estimate the relation between the linguistic diversity of counselors and their effectiveness in engendering positive outcomes.<br>STEP 4: Use the resulting high level linguistic characterization to analyze the evolution. (MAIN FOCUS)</p>
+</li>
+<li><p>特别的，由于数据集的特别，我们可以添加一个特征：下次是否还继续跟同一个医生聊天。</p>
+</li>
+</ol>
+<h4 id="inspiration：随着聊天越来越多，他们的话题是否变化？情感是否变化？上述的语言feature是否变化？"><a href="#inspiration：随着聊天越来越多，他们的话题是否变化？情感是否变化？上述的语言feature是否变化？" class="headerlink" title="inspiration：随着聊天越来越多，他们的话题是否变化？情感是否变化？上述的语言feature是否变化？"></a>inspiration：随着聊天越来越多，他们的话题是否变化？情感是否变化？上述的语言feature是否变化？</h4><h4 id="inspiration-成功的counselor到底是怎么安慰人的-他们有哪些strategy-我们能否发现更多的strategy"><a href="#inspiration-成功的counselor到底是怎么安慰人的-他们有哪些strategy-我们能否发现更多的strategy" class="headerlink" title="inspiration: 成功的counselor到底是怎么安慰人的? 他们有哪些strategy? 我们能否发现更多的strategy?"></a>inspiration: 成功的counselor到底是怎么安慰人的? 他们有哪些strategy? 我们能否发现更多的strategy?</h4><p>培训咨询师应该培训哪些方面？</p>
+<p>需要补一些心理学的知识</p>
+<h4 id="分析病人随着待在平台的时间，选择的聊天的人的变化情况。为什么会一直跟某人聊下去"><a href="#分析病人随着待在平台的时间，选择的聊天的人的变化情况。为什么会一直跟某人聊下去" class="headerlink" title="分析病人随着待在平台的时间，选择的聊天的人的变化情况。为什么会一直跟某人聊下去"></a>分析病人随着待在平台的时间，选择的聊天的人的变化情况。为什么会一直跟某人聊下去</h4><h4 id="已公开且允许使用的数据集有哪些？"><a href="#已公开且允许使用的数据集有哪些？" class="headerlink" title="已公开且允许使用的数据集有哪些？"></a>已公开且允许使用的数据集有哪些？</h4><p>RADDIT?</p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+</search>

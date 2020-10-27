@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://www.lutann.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+<link rel="dns-prefetch" href="https://www.lutann.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="prefetch" href="https://www.lutann.com">
+<link rel="prefetch" href="//www.google-analytics.com">
+
+
+<link rel="prerender" href="https://www.lutann.com">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://www.lutann.com">
+<meta name="author" content="Lu Tan">
+
+<link rel="stylesheet" href="/css/JSimple.css">
+
+
+<link rel="shortcut icon" href="/images/favicon1.png">
+
+
+<title>machine learning basics for conversational ai - LuLu&#39;s Blog</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+    </script>
+
+
+    
+
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="Lu">Lu</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-archives"></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">LuLu&#39;s Blog</h1>
+        <h3 class="cover-siteTitle">Stay hungry, stay foolish.</h3>
+        <p class="cover-siteDesc">You can&#39;t connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future.</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/Lu-Tan" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-twitter">
+        <a href="https://www.zhihu.com/people/tan-lu-50-39" target="_blank" title="twitter" ref="friend">
+            <i class="fa fa-twitter"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Recent Posts</a></li>
+        
+        
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="click to search..." />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://www.lutann.com"
+                   target="_blank">
+                    <img width="48" src="/images/favicon1.png" alt="avatar"/>
+                </a>
+                <p><span class="label">Author</span>
+                    <a href="https://www.lutann.com"
+                       target="_blank">Lu Tan</a>
+                    <span title="Last edited at&nbsp;2020-04-27">2020-04-27</span>
+                </p>
+                <p>一只小可爱</p>
+            </div>
+            <h2 class="post-title">Machine Learning Basics for Conversational AI</h2>
+            <div class="post-meta">
+                emm... 5372 words in the article |
+                you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h1 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h1><p><strong>Mitchell</strong> defines: any computer program that improves its performance at some task T, measured by P, through experiences E.</p>
+<ul>
+<li>T:(in conversational AI: perform conversations with a user to fulfill the user’s goal.</li>
+<li>P: cumulative reward<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1587945852/222_ctrk2x.png" alt=""></li>
+<li>E: a set of dialogues</li>
+</ul>
+<h2 id="Surpervised-Learning"><a href="#Surpervised-Learning" class="headerlink" title="Surpervised Learning"></a>Surpervised Learning</h2><h4 id="A-common-recipe-of-building-an-ML-agent-using-supervised-learning-SL-consists-of"><a href="#A-common-recipe-of-building-an-ML-agent-using-supervised-learning-SL-consists-of" class="headerlink" title="A common recipe of building an ML agent using supervised learning (SL) consists of"></a>A common recipe of building an ML agent using supervised learning (SL) consists of</h4><ul>
+<li>a dataset </li>
+<li>The dataset consists of (x, y∗) pairs, where for each input x, there is a ground-truth output y∗. In QA, x consists of an input question and the documents from which an answer is generated, and y∗ is the desired answer provided by a knowledgeable external supervisor</li>
+<li>a model</li>
+<li>a cost function (a.k.a. loss function)<ul>
+<li>The cost function is of the form L(y∗, f(x; θ))</li>
+<li>L(.) is often designed as a smooth function(differentiable everywhere) of error.</li>
+<li>A commonly used cost function that meets these criteria is the mean squared error (MSE)<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588012080/de_bccc3c.png" alt=""></li>
+</ul>
+</li>
+<li>an optimization procedure<ul>
+<li>The optimization can be viewed as a search algorithm to identify the best θ that <strong>minimize L(.)</strong>.<br>Given that L is differentiable, the most widely used optimization procedure for deep learning is mini-batch Stochastic Gradient Descent (SGD) which updates θ after each batch as <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588012262/SGD_yin3qj.png" alt=""> where N is the batch size and α the learning rate.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Common-supervised-learning-metrics"><a href="#Common-supervised-learning-metrics" class="headerlink" title="Common supervised learning metrics"></a>Common supervised learning <strong>metrics</strong></h4><p>regression problems: mean squared error</p>
+<ul>
+<li><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588046494/MSE_uncxsu.png" alt=""></li>
+</ul>
+<p>classification problems</p>
+<ul>
+<li>binary classification: accuracy, precision, recall, F1 Score<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588048090/binary-classification-metrics_kefszn.png" alt=""></li>
+<li>beyond binary: BLEU score</li>
+</ul>
+<h2 id="Reinforcement-Learning"><a href="#Reinforcement-Learning" class="headerlink" title="Reinforcement Learning"></a>Reinforcement Learning</h2><p>Define: In unexplored territories, the agent has to learn how to act by interacting with an unknown environment on its own. </p>
+<h4 id="RL-V-S-SL"><a href="#RL-V-S-SL" class="headerlink" title="RL V.S SL:"></a>RL V.S SL:</h4><p>While SL learns from previous experiences provided by a knowledgeable external supervisor, RL learns by experiencing on its own.</p>
+<h4 id="Feature-of-RL"><a href="#Feature-of-RL" class="headerlink" title="Feature of RL:"></a>Feature of RL:</h4><ol>
+<li>Exploration-exploitation tradeoff. (???)</li>
+</ol>
+<ul>
+<li>exploit: The agent has to exploit what it already knows in order to obtain high rewards.</li>
+<li>explore: The agent has to explore unknown states and actions in order to make better action selections in the future.</li>
+</ul>
+<ol start="2">
+<li><p>Delayed reward and temporal credit assignment.<br>The agent has to determine which of the actions in its sequence are to be credited with producing the eventual reward.</p>
+</li>
+<li><p>Partially observed states.<br>In many RL problems, the observation perceived from the environment at each step, e.g., user input in each dialogue turn, provides only partial information about the entire state of the environment based on which the agent selects the next action.<br>Neural approaches learn a deep neural network to represent the state by <strong>encoding all information</strong> observed at the current and past steps.</p>
+</li>
+</ol>
+<h4 id="A-central-challenge-in-both-RL-and-SL-generalization"><a href="#A-central-challenge-in-both-RL-and-SL-generalization" class="headerlink" title="A central challenge in both RL and SL: generalization"></a>A central challenge in both RL and SL: <strong>generalization</strong></h4><p>the ability to perform well on unseen inputs.</p>
+<ul>
+<li>solution: neural approaches provide a potentially more effective solution by <strong>leveraging the representation</strong>(?) learning power of deep neural networks.</li>
+</ul>
+<h1 id="Deep-Learning"><a href="#Deep-Learning" class="headerlink" title="Deep Learning"></a>Deep Learning</h1><h4 id="Deep-learning-V-S-neural-network"><a href="#Deep-learning-V-S-neural-network" class="headerlink" title="Deep learning V.S neural network?"></a>Deep learning V.S neural network?</h4><p>DL involves training neural networks.</p>
+<p><strong>Why Deep?</strong></p>
+<p>The neural networks, in their original form, consisted of a single layer(i.e., the perceptron).</p>
+<p>The perceptron is incapable of learning even simple functions such as logical XOR.</p>
+<p>To solve the problem, we add hidden layers(<strong>Why hiden?</strong>) between input and output. –this is called MLP(multi-layer perceptron) or DNN(deep neural networks).</p>
+<h2 id="commonly-used-DNNs-for-NLP-amp-IR"><a href="#commonly-used-DNNs-for-NLP-amp-IR" class="headerlink" title="commonly used DNNs for NLP &amp; IR"></a>commonly used DNNs for NLP &amp; IR</h2><h3 id="Softmax-function"><a href="#Softmax-function" class="headerlink" title="Softmax function"></a><strong>Softmax function</strong></h3><p>An activation function.</p>
+<p>It outputs a vector that represents the probability distributions of a list of potential outcomes.</p>
+<h3 id="normalization-step-taking-exponentials-sums-and-division"><a href="#normalization-step-taking-exponentials-sums-and-division" class="headerlink" title="normalization step: taking exponentials, sums and division."></a><strong>normalization step: taking exponentials, sums and division.</strong></h3><p>ex. Softmax function turns logits [2.0, 1.0, 0.1] into probabilities [0.7, 0.2, 0.1], and the probabilities sum to 1.<br><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588104301/softmax_wy6yoa.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">logits &#x3D; [2.0, 1.0, 0.1]</span><br><span class="line">exps &#x3D; [np.exp(i) for i in logits]</span><br><span class="line">sum_of_exps &#x3D; sum(exps)</span><br><span class="line">softmax &#x3D; [j&#x2F;sum_of_exps for j in exps]</span><br><span class="line">print(&quot;softmax:&#123;&#125;&quot;.format(softmax))</span><br></pre></td></tr></table></figure>
+
+<p><em>Why we need exponents?</em></p>
+<ul>
+<li>Logits ranges from negative infinity to positive infinity. When logits are negative, adding it together does not give us the correct normalization. Exponentiate logitsturn them them zero or positive!</li>
+</ul>
+<p><em>Why special number e?</em></p>
+<ul>
+<li>e exponents also makes the math easier later! log(a*b)= log(a)+log(b)</li>
+</ul>
+<p><em>logits layer means the last neuron layer of neural network for classification task which produces raw prediction values.</em></p>
+<p><em>Logits: numeric output of the last linear layer of a multi-class classification neural network. Before activation takes place.</em></p>
+<p>Softmax function is <em>frequently appended to</em> the last layer of an image classification network such as cnn.</p>
+<ul>
+<li><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588105160/soft2_a3nsm6.png" alt=""></li>
+</ul>
+<h2 id="classical-ML-V-S-DL"><a href="#classical-ML-V-S-DL" class="headerlink" title="classical-ML V.S DL"></a>classical-ML V.S DL</h2><p><em>Ex: text classification</em></p>
+<h3 id="classical-ML"><a href="#classical-ML" class="headerlink" title="classical ML:"></a>classical ML:</h3><ol>
+<li>Map a text string to a vector representation <strong>x</strong>, using a set of <strong>hand-engineered</strong> features.</li>
+<li>Learn a linear classifier with a softmax layer to compute the distribution.</li>
+</ol>
+<p><em>Design effort: feature engineering</em></p>
+<h3 id="DL"><a href="#DL" class="headerlink" title="DL"></a>DL</h3><p>Jointly optimize the <em>feature representation</em> and <em>classification</em> using a DNN.</p>
+<p><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588128439/ml-vs-dl_nel4rq.png" alt=""></p>
+<p>DNN consists of two halves:</p>
+<ol>
+<li>top half: linear classifier, similar to classical ML.</li>
+<li>The input vector of top half is <strong>not from hand-engineered features</strong>, but learned using the bottom half of the DNN.</li>
+</ol>
+<p><em>Design Effort: optimize DNN architectures for effective representation learning.</em></p>
+<h2 id="Which-NN-neural-network-to-choose"><a href="#Which-NN-neural-network-to-choose" class="headerlink" title="Which NN(neural network) to choose?"></a>Which NN(neural network) to choose?</h2><p><strong>Depend on the type of linguistic structures that we hope to capture in the text.</strong></p>
+<ol>
+<li><p>Option 1: Word Embedding Layers</p>
+<p>Map each word to a m-dimensional real-valued vector.</p>
+</li>
+<li><p>Option 2： Fully Connected Layers</p>
+</li>
+</ol>
+
+            
+                
+
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Donate
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/NLP/">NLP</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">This article just represents my own viewpoint. If there is something wrong, please correct me.</p>
+    
+    
+    
+
+</div>
+
+<script src="/js/busuanzi.pure.mini.js"></script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="Help" >Help</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="Links">Links</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="SiteMap">SiteMap</a>
+        </p>
+        <p>
+            Has been established&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbspDays，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">Based on Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a><br/>
+            ©2017-<span id="cpYear"></span> Based on&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，Theme by&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，Author&nbsp<a href="https://www.lutann.com" target="_blank" rel="friend">Lu Tan</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
+        </p>
+    </div>
+</footer>
+
+<script src="/js/SimpleCore.js"></script>
+
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="Input query keywords here..."/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        var jsi_config = {
+            buildingTime: '04/24/2020',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+            localSearch: { dbPath: '' },
+            readMode: 'day'
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        SimpleCore.init(jsi_config);
+        
+    });
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

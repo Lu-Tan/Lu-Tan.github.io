@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://www.lutann.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+<link rel="dns-prefetch" href="https://www.lutann.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="prefetch" href="https://www.lutann.com">
+<link rel="prefetch" href="//www.google-analytics.com">
+
+
+<link rel="prerender" href="https://www.lutann.com">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://www.lutann.com">
+<meta name="author" content="Lu Tan">
+
+<link rel="stylesheet" href="/css/JSimple.css">
+
+
+<link rel="shortcut icon" href="/images/favicon1.png">
+
+
+<title>[basic]word embedding - LuLu&#39;s Blog</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+    </script>
+
+
+    
+
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="Lu">Lu</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-archives"></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">LuLu&#39;s Blog</h1>
+        <h3 class="cover-siteTitle">Stay hungry, stay foolish.</h3>
+        <p class="cover-siteDesc">You can&#39;t connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future.</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/Lu-Tan" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-twitter">
+        <a href="https://www.zhihu.com/people/tan-lu-50-39" target="_blank" title="twitter" ref="friend">
+            <i class="fa fa-twitter"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Recent Posts</a></li>
+        
+        
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="click to search..." />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://www.lutann.com"
+                   target="_blank">
+                    <img width="48" src="/images/favicon1.png" alt="avatar"/>
+                </a>
+                <p><span class="label">Author</span>
+                    <a href="https://www.lutann.com"
+                       target="_blank">Lu Tan</a>
+                    <span title="Last edited at&nbsp;2020-04-30">2020-04-30</span>
+                </p>
+                <p>一只小可爱</p>
+            </div>
+            <h2 class="post-title">[BASIC]Word Embedding</h2>
+            <div class="post-meta">
+                emm... 4317 words in the article |
+                you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h1 id="Word-Embedding-layers"><a href="#Word-Embedding-layers" class="headerlink" title="Word Embedding layers"></a>Word Embedding layers</h1><h2 id="Define-word-embedding"><a href="#Define-word-embedding" class="headerlink" title="Define word embedding"></a>Define word embedding</h2><p>Word embeddings are a type of word representation that allows words with similar meaning to have a similar representation.</p>
+<p>Word embeddings are in fact a class of techniques where individual words are represented as real-valued vectors in a predefined vector space. Each word is mapped to one vector and the vector values are learned in a way that resembles a neural network, <strong>based on the usage of the words.</strong></p>
+<p>Each word is represented as a <strong>one hot</strong> vector, whose dimensionality <em>n</em> is the size of a pre-defined voca<br>bulary. The vocabulary is often too large. Word embedding model is to map each one-hot vector to a m-dimensional real-valued vector. m 《 n. The number of features is much smaller than the size of the vocabulary.</p>
+<h3 id="one-hot"><a href="#one-hot" class="headerlink" title="one-hot"></a>one-hot</h3><p>EX1: Suppose you have ‘flower’ feature which can take values ‘daffodil’, ‘lily’, and ‘rose’. One hot encoding converts ‘flower’ feature to three features, ‘is_daffodil’, ‘is_lily’, and ‘is_rose’ which all are binary.</p>
+<p>EX2: <img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588178728/one-hot_qa7mmr.png" alt=""></p>
+<p>Word embeddng is one of the key breakthroughs of DL on challenging NLP.  </p>
+<ol>
+<li><strong>low-dimensinal vector</strong>: the majority of neural network toolkits do not play well with very high-dimensional, sparse vectors</li>
+<li><strong>dense vector</strong>:  it is worthwhile to provide a representation that is able to capture these similarities on features.</li>
+</ol>
+<h2 id="Word-embedding-algorithms"><a href="#Word-embedding-algorithms" class="headerlink" title="Word embedding algorithms"></a>Word embedding algorithms</h2><p><strong>Word embedding methods are learning process.</strong></p>
+<p>They learn a <em>real-valued vector representation</em> for a predefined fixed sized vocabulary <em>from a corpus of text</em>.</p>
+<p>Two types of learning process:</p>
+<ol>
+<li>Joint with neural network model on some task.</li>
+<li>Unsupervised process, using document statistics.</li>
+</ol>
+<p>Three ways to learn a word embedding:</p>
+<p><strong>1.Embedding layer</strong></p>
+<p>It’s a word embedding, which is learned jointly with a <em>neural network model</em> on a <em>specific</em> natural language processing task(ex: language modeling or document classification).</p>
+<p>It’s <em>used</em> on the front end of a neural network and is fit in a supervised way using a Backpropagation algorithm.</p>
+<p>It requires that document text be cleaned and prepared such that each word is one-hot encoded.</p>
+<ul>
+<li>disadvantage: It requires a lot of training data and can be slow</li>
+<li>advantage: It will learn an embedding both targeted to the <em>specific text data</em> and the <em>NLP task</em>.</li>
+</ul>
+<p><strong>2. Word2Vec</strong></p>
+<p>It is <strong>effient</strong>, good at capturing syntactic and semantic regularities, learns a <em>standalone</em> word embedding from a text corpus.</p>
+<pre><code>low space and time complexity
+more dimensions
+much larger corpora of text </code></pre><p><strong>Ex: King - man + woman = Queen.</strong></p>
+<p>– Word2Vec involved analysis of the learned vectors and the exploration of vector math on the representations of words. </p>
+<p><em>Two different models</em>:</p>
+<ul>
+<li><p>CBOW(continuous Bag-of-Words) model</p>
+<p>  CBOW learns the embedding by predicting the current word based on its context.</p>
+</li>
+<li><p>Continuous Skip-Gram Model</p>
+<p>  It learns by predicting the surrounding words given a current word.</p>
+</li>
+</ul>
+<p><img src="https://res.cloudinary.com/dmfrqkuif/image/upload/v1588197753/word2vec_j3hnqr.png" alt=""></p>
+<p><strong>Size of sliding winodw</strong><br>The context is defined by a window of neighboring words. This window is a configurable parameter of the model.</p>
+<p>Large windows tend to produce more topical similarities, while smaller windows tend to produce more functional and syntactic similarities.</p>
+<p><strong>3.GloVe: The Global Vectors for Word Representation</strong></p>
+<p>It is an extension to the word2vec method for efficiently learning word vectors. GloVe is an approach to marry both the <em>global statistics of matrix factorization techniques</em> like LSA with the <em>local context-based learning</em> in word2vec.</p>
+<ul>
+<li>LSA(latent semantic analysis): It’s for analyzing relationships between a set of documents and the terms they contain by <em>producing a set of concepts related to the documents and terms</em>. LSA assumes that <em>words that are close in meaning will occur in similar pieces of text</em>. A matrix containing word counts per document (rows represent unique words and columns represent each document). Documents are then compared by taking the cosine of the angle between the two vectors (or the dot product between the normalizations of the two vectors) formed by any two columns. Values close to 1 represent very similar documents while values close to 0 represent very dissimilar documents</li>
+</ul>
+<p>Rather than using a window to define local context, <em>GloVe constructs an explicit word-context or word co-occurrence matrix using statistics across the whole text corpus.</em></p>
+<p>GloVe performs well at word analogy, word similarity, and named entity recognition tasks.</p>
+
+            
+                
+
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Donate
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/BASIC/">BASIC</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">This article just represents my own viewpoint. If there is something wrong, please correct me.</p>
+    
+    
+    
+
+</div>
+
+<script src="/js/busuanzi.pure.mini.js"></script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="Help" >Help</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="Links">Links</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="SiteMap">SiteMap</a>
+        </p>
+        <p>
+            Has been established&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbspDays，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">Based on Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a><br/>
+            ©2017-<span id="cpYear"></span> Based on&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，Theme by&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，Author&nbsp<a href="https://www.lutann.com" target="_blank" rel="friend">Lu Tan</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
+        </p>
+    </div>
+</footer>
+
+<script src="/js/SimpleCore.js"></script>
+
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="Input query keywords here..."/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        var jsi_config = {
+            buildingTime: '04/24/2020',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+            localSearch: { dbPath: '' },
+            readMode: 'day'
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        SimpleCore.init(jsi_config);
+        
+    });
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
